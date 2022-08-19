@@ -75,8 +75,8 @@ namespace Contest_Killer.ViewModel
 
 			Dictionary<string, int> dict;
 			p.Title = Path.GetFileNameWithoutExtension(probPath);
-			p.TimeLimit = 1000;
-			p.MemoryLimit = 128.0;
+			p.TimeLimit = App.AppSettings.DefaultTimeLimit;
+			p.MemoryLimit = App.AppSettings.DefaultMemoLimit;
 
 			dict = new Dictionary<string, int>();
 			for (int i = 0; i < files.Count; i++)
@@ -85,7 +85,7 @@ namespace Contest_Killer.ViewModel
 				string e = Path.GetExtension(files[i]);
 				if (!dict.ContainsKey(s))
 				{
-					p.Points.Add(new TestPoint() { Score = 10 });
+					p.Points.Add(new TestPoint() { Score = App.AppSettings.DefaultPointScore });
 					if (e == ".in") p.Points[p.Points.Count - 1].Files.Add(new FileIOPair() { InFile = files[i] });
 					else p.Points[p.Points.Count - 1].Files.Add(new FileIOPair() { OutFile = files[i] });
 					dict.Add(s, p.Points.Count - 1);
@@ -159,7 +159,7 @@ namespace Contest_Killer.ViewModel
 				string e = Path.GetExtension(files[i]);
 				if (!dict.ContainsKey(s))
 				{
-					p.Points.Add(new TestPoint() { Score = 10 });
+					p.Points.Add(new TestPoint() { Score = App.AppSettings.DefaultPointScore });
 					if (e == ".in") p.Points[p.Points.Count - 1].Files.Add(new FileIOPair() { InFile = files[i] });
 					else p.Points[p.Points.Count - 1].Files.Add(new FileIOPair() { OutFile = files[i] });
 					dict.Add(s, p.Points.Count - 1);
