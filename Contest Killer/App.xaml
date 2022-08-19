@@ -85,7 +85,7 @@
             <vm:CompilerConfig x:Key="AppDefaultCompilerCPP"
                                Name="CPP"
                                AppPath="g++"
-                               CommandLine="{}{{fileName}} -o {{exeName}} -std=c++11"/>
+                               CommandLine="{}-o {{exeName}} -std=c++11"/>
 
             <vm:CompilerConfig x:Key="AppDefaultCompilerCSharp"
                                Name="CSharp"
