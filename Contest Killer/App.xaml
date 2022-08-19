@@ -90,12 +90,12 @@
             <vm:CompilerConfig x:Key="AppDefaultCompilerCSharp"
                                Name="CSharp"
                                AppPath="csc"
-                               CommandLine="{}{{fileName}}"/>
+                               CommandLine=""/>
 
             <vm:CompilerConfig x:Key="AppDefaultCompilerJava"
                                Name="Java"
                                AppPath="java"
-                               CommandLine="{}{{fileName}}"/>
+                               CommandLine=""/>
 
             <vm:Settings x:Key="AppDefaultSettings"
                          ImagePath="pack://application:,,,/Resources/default1.jpg"
