@@ -1,0 +1,54 @@
+﻿<local:PageViewBase x:Class="Contest_Killer.UserControls.BackgroundPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Contest_Killer.UserControls"
+             mc:Ignorable="d"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+			 xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
+			 xmlns:ut="clr-namespace:Contest_Killer.Utils"
+			 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:controls="clr-namespace:Contest_Killer.UserControls"
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance Type={x:Type vm:BackgroundPageViewModel}}"
+             Height="600" Width="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{StaticResource lang_DoubleClickToSelect}"
+                           FontWeight="Bold"
+                           Margin="10,0,0,10"
+                           VerticalAlignment="Center"
+                           FontSize="20px"/>
+            <Button Style="{StaticResource MaterialDesignIconButton}"
+                    Grid.Column="1" Margin="0,0,10,10"
+                    Command="{x:Static md:DialogHost.CloseDialogCommand}"
+                    CommandParameter="{StaticResource boolFalse}">
+                <md:PackIcon Kind="Close"/>
+            </Button>
+        </Grid>
+        <controls:FluentScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" Height="auto">
+            <ListBox Style="{StaticResource MaterialDesignNavigationListBox}"
+                     ItemContainerStyle="{StaticResource OverviewScoreItem}"
+                     ItemsSource="{Binding Items}"
+                     SelectedIndex="{Binding Selected, Mode=TwoWay}"
+                     ItemTemplate="{StaticResource BackgroundItemListTemplate}"
+                     PreviewMouseWheel="PagePreviewMouseWheel">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{x:Static md:DialogHost.CloseDialogCommand}"
+                                           CommandParameter="{StaticResource boolTrue}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ListBox>
+        </controls:FluentScrollViewer>
+    </Grid>
+</local:PageViewBase>

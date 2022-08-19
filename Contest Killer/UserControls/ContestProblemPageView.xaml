@@ -1,0 +1,104 @@
+﻿<local:PageViewBase x:Class="Contest_Killer.UserControls.ContestProblemPageView"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:local="clr-namespace:Contest_Killer.UserControls"
+			 mc:Ignorable="d"
+			 xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+			 xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
+			 xmlns:ut="clr-namespace:Contest_Killer.Utils"
+			 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:controls="clr-namespace:Contest_Killer.UserControls"
+			 d:DataContext="{d:DesignInstance Type=vm:ContestPageViewModel}"
+			 d:DesignHeight="450" d:DesignWidth="800">
+	<controls:FluentScrollViewer>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto"/>
+				<RowDefinition Height="auto"/>
+			</Grid.RowDefinitions>
+			<Grid Margin="0,10,0,0" Grid.Row="0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="auto"/>
+					<ColumnDefinition Width="auto"/>
+					<ColumnDefinition Width="auto"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="{StaticResource lang_Problems}"
+						   Grid.Column="0"
+						   Margin="15,5,15,0"
+						   VerticalAlignment="Center"
+						   FontSize="26px" FontWeight="Bold"/>
+				<Border BorderBrush="{DynamicResource MaterialDesignDivider}"
+						Grid.Column="0"
+						BorderThickness="0 0 0 3"
+						VerticalAlignment="Bottom"
+						Margin="15,0,15,0"/>
+				<Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+						Grid.Column="1"
+						Margin="0,10,15,0"
+						VerticalAlignment="Center"
+						Command="{Binding AddProbCmd}" Cursor="Hand">
+					<md:PackIcon  Kind="Plus"/>
+				</Button>
+				<Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+						Grid.Column="2"
+						Margin="0,10,15,0"
+						VerticalAlignment="Center"
+						Command="{Binding RefreshCmd}"
+						CommandParameter="0"
+						Cursor="Hand"
+						ToolTip="{StaticResource lang_Reload}">
+					<md:PackIcon  Kind="Refresh"/>
+				</Button>
+				<Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+						Grid.Column="3"
+						Margin="0,10,15,0"
+						VerticalAlignment="Center"
+						Command="{Binding OpenInExplorerCmd}"
+						CommandParameter="1"
+						Cursor="Hand"
+						ToolTip="{StaticResource lang_OpenInExplorer}">
+					<md:PackIcon  Kind="Folder"/>
+				</Button>
+				<Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+						Grid.Column="1"
+						Margin="0,10,15,0"
+						VerticalAlignment="Center"
+						Command="{Binding AddProbCmd}" Cursor="Hand">
+					<md:PackIcon  Kind="Plus"/>
+				</Button>
+			</Grid>
+			<ListBox Margin="25,10,25,0"
+					 Grid.Row="1"
+					 Style="{StaticResource MaterialDesignNavigationPrimaryListBox}"
+					 ItemsSource="{Binding ContestData.Problems}"
+					 SelectionChanged="PageSelectionChanged"
+					 PreviewMouseWheel="PagePreviewMouseWheel"
+					 ItemTemplate="{StaticResource ProblemListTemplate}"
+					 ItemContainerStyle="{StaticResource OverviewScoreItem}"
+					 SelectionMode="Extended">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="Loaded">
+						<i:InvokeCommandAction Command="{Binding ProblemListLoadedCmd}"
+											   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}}"/>
+					</i:EventTrigger>
+					<i:EventTrigger EventName="MouseDoubleClick">
+						<i:InvokeCommandAction Command="{Binding ProblemOpenDialogCmd}"/>
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+				<ListBox.ContextMenu>
+					<ContextMenu>
+						<MenuItem Header="{StaticResource lang_Edit}"
+							  Icon="{md:PackIcon Kind=Edit}"
+							  Command="{Binding ProblemOpenDialogCmd}"/>
+						<MenuItem Header="{StaticResource lang_Delete}"
+							  Icon="{md:PackIcon Kind=Delete}"
+							  Command="{Binding DeleteProbCmd}"/>
+					</ContextMenu>
+				</ListBox.ContextMenu>
+			</ListBox>
+		</Grid>
+	</controls:FluentScrollViewer>
+</local:PageViewBase>

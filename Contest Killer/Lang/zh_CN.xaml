@@ -1,0 +1,412 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	d1p1:Ignorable="d"
+	xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <!--Message-->
+    <s:String x:Key="lang_BackHome">
+        回到主页
+    </s:String>
+    
+    <s:String x:Key="lang_Close">
+        关闭
+    </s:String>
+
+    <s:String x:Key="lang_Save">
+        保存
+    </s:String>
+
+    <s:String x:Key="lang_RestartNeeded">
+        需要重启应用
+    </s:String>
+    
+    <s:String x:Key="lang_Message">
+        消息
+    </s:String>
+
+    <s:String x:Key="lang_Input">
+        输入
+    </s:String>
+
+    <s:String x:Key="lang_Help">
+        帮助
+    </s:String>
+
+    <s:String x:Key="lang_Attention">
+        注意
+    </s:String>
+
+    <s:String x:Key="lang_Error">
+        错误
+    </s:String>
+
+    <s:String x:Key="lang_Export">
+        导出
+    </s:String>
+
+    <s:String x:Key="lang_Check">
+        查看
+    </s:String>
+
+    <s:String x:Key="lang_Run">
+        运行
+    </s:String>
+
+    <s:String x:Key="lang_Total">
+        总和
+    </s:String>
+
+    <s:String x:Key="lang_Ascending">
+        升序
+    </s:String>
+
+    <s:String x:Key="lang_Descending">
+        降序
+    </s:String>
+
+    <s:String x:Key="lang_OK">
+        确认
+    </s:String>
+
+    <s:String x:Key="lang_Cancel">
+        取消
+    </s:String>
+
+    <s:String x:Key="lang_Stop">
+        停止
+    </s:String>
+
+    <s:String x:Key="lang_Clear">
+        清除
+    </s:String>
+
+    <s:String x:Key="lang_Home">
+        主页
+    </s:String>
+
+    <!-- Settings -->
+
+    <s:String x:Key="lang_SelectThemeColors" xml:space="preserve">选择主题颜色</s:String>
+
+    <s:String x:Key="lang_ThemeAdjustment" xml:space="preserve">主题调整参数</s:String>
+
+    <s:String x:Key="lang_ContrastRatio" xml:space="preserve">对比度参数</s:String>
+
+    <s:String x:Key="lang_Contrast">
+        对比度选项
+    </s:String>
+
+    <s:String x:Key="lang_Mode">
+        模式
+    </s:String>
+
+    <s:String x:Key="lang_Preview">
+        预览
+    </s:String>
+
+    <s:String x:Key="lang_Primary">
+        首要
+    </s:String>
+
+    <s:String x:Key="lang_Custom">
+        自定义
+    </s:String>
+
+    <s:String x:Key="lang_PrimaryColor" xml:space="preserve">首要颜色</s:String>
+
+    <s:String x:Key="lang_PrimaryFontColor" xml:space="preserve">首要字体颜色</s:String>
+
+    <s:String x:Key="lang_Compiler">
+        编译器
+    </s:String>
+
+    <s:String x:Key="lang_CommandLine">
+        命令行
+    </s:String>
+
+    <s:String x:Key="lang_ChooseCompiler" xml:space="preserve">选择编译器</s:String>
+
+    <s:String x:Key="lang_CommandLinePara" xml:space="preserve">命令行参数</s:String>
+
+    <s:String x:Key="lang_CompilerConfigTip" xml:space="preserve">约定 - 以下内容将被替换: (点击复制)</s:String>
+
+    <s:String x:Key="lang_SrcFileName" xml:space="preserve">源文件名</s:String>
+
+    <s:String x:Key="lang_ExeFileName" xml:space="preserve">可执行文件名</s:String>
+
+    <s:String x:Key="lang_FileNameNoExt" xml:space="preserve">源文件名 - 不含扩展名</s:String>
+
+    <s:String x:Key="lang_DoubleClickToSelect" xml:space="preserve">双击选择</s:String>
+
+    <s:String x:Key="lang_SettingsSaved" xml:space="preserve">设置信息已经保存</s:String>
+
+    <s:String x:Key="lang_Appearance">
+        外观
+    </s:String>
+
+    <s:String x:Key="lang_TabWidth" xml:space="preserve">Tab 宽度</s:String>
+
+    <s:String x:Key="lang_AutoWidth" xml:space="preserve">自动宽度</s:String>
+
+    <s:String x:Key="lang_Background">
+        背景
+    </s:String>
+
+    <s:String x:Key="lang_ChooseBackground" xml:space="preserve">选择背景图片</s:String>
+
+    <s:String x:Key="lang_EnableImage" xml:space="preserve">启用背景图片</s:String>
+
+    <s:String x:Key="lang_UseDefaultImage" xml:space="preserve">使用内置图片</s:String>
+
+    <s:String x:Key="lang_SelectImage" xml:space="preserve">选择图片</s:String>
+
+    <s:String x:Key="lang_Theme">
+        主题
+    </s:String>
+
+    <s:String x:Key="lang_ModifyThemes" xml:space="preserve">修改主题</s:String>
+
+    <s:String x:Key="lang_Light">
+        明亮模式
+    </s:String>
+
+    <s:String x:Key="lang_Dark">
+        暗黑模式
+    </s:String>
+
+    <s:String x:Key="lang_Language">
+        语言
+    </s:String>
+
+    <s:String x:Key="lang_Contest">
+        竞赛
+    </s:String>
+
+    <s:String x:Key="lang_TimeLimit" xml:space="preserve">时间限制 (ms)</s:String>
+
+    <s:String x:Key="lang_MemoryLimit" xml:space="preserve">空间限制 (MB)</s:String>
+
+    <s:String x:Key="lang_TestPointScore" xml:space="preserve">测试点分数</s:String>
+
+    <s:String x:Key="lang_CompilerCPP" xml:space="preserve">编译器 - C++</s:String>
+    <s:String x:Key="lang_EditCPP" xml:space="preserve">编辑 - g++.exe</s:String>
+
+    <s:String x:Key="lang_CompilerCSharp" xml:space="preserve">编译器 - C#</s:String>
+    <s:String x:Key="lang_EditCSharp" xml:space="preserve">编辑 - csc.exe</s:String>
+
+    <s:String x:Key="lang_CompilerJava" xml:space="preserve">编译器 - Java</s:String>
+    <s:String x:Key="lang_EditJavaCompiler" xml:space="preserve">编辑 - javac.exe</s:String>
+    <s:String x:Key="lang_EditJavaInterpreter" xml:space="preserve">选择文件 - java.exe</s:String>
+
+    <s:String x:Key="lang_InterpreterPython" xml:space="preserve">解释器 - Python</s:String>
+    <s:String x:Key="lang_EditPythonInterpreter" xml:space="preserve">选择文件 - python.exe</s:String>
+
+    <s:String x:Key="lang_SettingsReopenTip">
+        选择图片后需要重启应用程序释放内存
+    </s:String>
+
+    <s:String x:Key="lang_SettingsThemeContrastHelp">
+        对比度与暗黑模式
+    </s:String>
+
+    <s:String x:Key="lang_SettingsThemeContrastHelpDetail">
+        在切换到暗黑模式时，主题颜色会自动调整，调整后的主题色和设定颜色的差别取决于对比度的设置\n
+		可以在设置主题颜色时设置对比度
+    </s:String>
+
+    <s:String x:Key="lang_SettingsReopenTipDetail">
+        程序使用 BitmapImage 加载图片\n
+		这会导致应用程序在不断更换或加载不同的图片后，占用的内存继续上升（最高可达1GB或更高）。\n
+		目前还没有找到有效的释放内存的方法。\n
+		因此，更改背景图片后，请保存设置并重新启动程序以释放内存。
+    </s:String>
+
+    <!--HomePage-->
+    <s:String x:Key="lang_RecentContest" xml:space="preserve">最近打开的竞赛</s:String>
+
+    <s:String x:Key="lang_NoRecentContest" xml:space="preserve">无最近打开的竞赛</s:String>
+
+    <s:String x:Key="lang_Open">
+        打开
+    </s:String>
+
+    <s:String x:Key="lang_Delete">
+        删除
+    </s:String>
+
+    <s:String x:Key="lang_Operations">
+        操作
+    </s:String>
+
+    <s:String x:Key="lang_DragFolderHelp" xml:space="preserve">拖动竞赛文件夹到此处来打开</s:String>
+
+    <s:String x:Key="lang_OpenCreateContest" xml:space="preserve">打开 / 创建竞赛</s:String>
+
+    <s:String x:Key="lang_Settings">
+        设置
+    </s:String>
+
+    <s:String x:Key="lang_OpenSource" xml:space="preserve">关于 &amp; 开源项目</s:String>
+
+    <s:String x:Key="lang_DeleteSure" xml:space="preserve">确定要删除所有项目吗？</s:String>
+
+    <s:String x:Key="lang_SelectContestFolder" xml:space="preserve">选择竞赛文件夹</s:String>
+
+    <!--ContestPage-->
+    <s:String x:Key="lang_Overview">
+        概览
+    </s:String>
+
+    <!--OverviewPage - Contest-->
+    <s:String x:Key="lang_General">
+        概览
+    </s:String>
+
+    <s:String x:Key="lang_Title">
+        题目
+    </s:String>
+
+    <s:String x:Key="lang_Time">
+        时间
+    </s:String>
+
+    <s:String x:Key="lang_Contestants">
+        选手
+    </s:String>
+
+    <s:String x:Key="lang_Description">
+        描述
+    </s:String>
+
+    <s:String x:Key="lang_Score">
+        分数
+    </s:String>
+
+    <s:String x:Key="lang_Reload">
+        重新加载
+    </s:String>
+
+    <s:String x:Key="lang_OpenInExplorer" xml:space="preserve">在文件资源管理器中打开</s:String>
+
+    <s:String x:Key="lang_ContestFolderError" xml:space="preserve">无法打开竞赛文件夹</s:String>
+
+    <s:String x:Key="lang_ContestSaved" xml:space="preserve">竞赛信息已经保存</s:String>
+
+    <s:String x:Key="lang_JudgingTip" xml:space="preserve">正在评测，请等待...</s:String>
+
+    <s:String x:Key="lang_ProblemRefreshed" xml:space="preserve">试题信息已经刷新</s:String>
+
+    <s:String x:Key="lang_ContestantsRefreshed" xml:space="preserve">选手信息已经刷新</s:String>
+
+    <s:String x:Key="lang_ProblemsDeleted" xml:space="preserve">已删除试题</s:String>
+
+    <!--ProblemPage - Contest-->
+    <s:String x:Key="lang_Problems">
+        试题
+    </s:String>
+
+    <s:String x:Key="lang_Edit">
+        编辑
+    </s:String>
+
+    <!--JudgePage - Contest-->
+    <s:String x:Key="lang_Judge">
+        评测
+    </s:String>
+
+    <s:String x:Key="lang_NameAscending" xml:space="preserve">按 名字 升序</s:String>
+
+    <s:String x:Key="lang_NameDescending" xml:space="preserve">按 名字 降序</s:String>
+
+    <s:String x:Key="lang_PointsAscending" xml:space="preserve">按 总分 升序</s:String>
+
+    <s:String x:Key="lang_PointsDescending" xml:space="preserve">按 总分 降序</s:String>
+
+    <s:String x:Key="lang_Charts">
+        统计
+    </s:String>
+
+    <s:String x:Key="lang_Task">
+        任务
+    </s:String>
+
+    <!--ProblemPage-->
+    <s:String x:Key="lang_Points">
+        测试点
+    </s:String>
+
+    <s:String x:Key="lang_Type">
+        类型
+    </s:String>
+
+    <s:String x:Key="lang_Divide">
+        拆分
+    </s:String>
+
+    <s:String x:Key="lang_Merge">
+        合并
+    </s:String>
+
+    <s:String x:Key="lang_Sort">
+        排序
+    </s:String>
+
+    <s:String x:Key="lang_ExtraCmd" xml:space="preserve">额外命令行参数</s:String>
+
+    <s:String x:Key="lang_TestPoints" xml:space="preserve">测试点</s:String>
+
+    <s:String x:Key="lang_IOFiles" xml:space="preserve">输入 / 输出文件</s:String>
+
+    <s:String x:Key="lang_ProblemPageAddHelp">
+        添加测试点或试题：\n
+        1.将所有输入输出文件放入问题文件夹。\n
+        2.问题文件夹应该在竞赛文件夹的 “data” 子文件夹下，并以问题的标题命名。\n
+        3.点击比赛信息页面的重新加载按钮\n
+        4.默认情况下，每个测试点仅有一个 I/O 文件对。
+    </s:String>
+
+
+    <s:String x:Key="lang_ProblemPageAddPtsBtnMenuHeader">
+        Dragdrop files help
+    </s:String>
+
+
+    <s:String x:Key="lang_CheckPointBtnTip2">
+        Right Click: Clear all the pairs which have empty I/O files.
+    </s:String>
+
+
+    <!--JudgePage-->
+    <s:String x:Key="lang_EvalCompleted" xml:space="preserve">评测任务已完成</s:String>
+
+    <!--AboutPage-->
+    <s:String x:Key="lang_AboutOpenSource" xml:space="preserve">关于 &amp; 开源项目</s:String>
+
+    <s:String x:Key="lang_About">
+        关于
+    </s:String>
+
+
+    <!--Abandoned-->
+    <!--AddPointPage-->
+    <s:String x:Key="lang_AddPointPageHelp">
+        == Operations ==\n
+		1.Drag file to this panel to add.\n
+		2.To delete single file pair: Click right mouse button on one file item in the list, and see the menu. \n
+		3.To delete all file pairs: Click button with icon "delete" below. \n
+		\n
+		== Data ==\n
+		1.Support input file extension: .in .txt\n
+		1.1.To be identified as input file, .txt file should have "in" in its name.\n
+		2.Support output file extension: .out .txt .ans\n
+		1.1.To be identified as output file, .txt file should have "out" in its name.\n
+		3.To make a pair, the in/out files must have the same name without extension.
+    </s:String>
+
+    <s:String x:Key="lang_CheckPointBtnTip1">
+        Left Click: Check all the pairs to see if files exist.
+    </s:String>
+</ResourceDictionary>

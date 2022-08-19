@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="Contest_Killer.UserControls.ContestantDetailPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Contest_Killer.UserControls"
+             mc:Ignorable="d"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+			 xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
+			 xmlns:ut="clr-namespace:Contest_Killer.Utils"
+			 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:controls="clr-namespace:Contest_Killer.UserControls"
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance Type={x:Type vm:ContestantDetailPageViewModel}}">
+    <Grid Margin="20,20,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="0">
+                <TextBlock Text="{Binding Player.TotalPoints}"
+					   Grid.Column="0"
+					   Margin="15,5,0,3"
+					   VerticalAlignment="Center"
+					   FontSize="32px" FontWeight="Black"/>
+                <TextBlock Text="pts"
+					   Grid.Column="0"
+					   Margin="10,5,15,5"
+					   VerticalAlignment="Bottom"
+					   FontSize="20px" FontWeight="Medium"/>
+            </StackPanel>
+            <TextBlock Text="{Binding Player.Name}"
+					   Grid.Column="1"
+					   Margin="15,5,15,5"
+					   VerticalAlignment="Center"
+					   FontSize="20px" FontWeight="SemiBold"/>
+
+            <Button Margin="0,0,0,0"
+                    Grid.Column="2"
+                    Padding="0"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    Content="{md:PackIcon Kind=FileExport}"
+                    Command="{Binding FileExportCmd}"/>
+            
+            <Button Margin="0,0,0,0"
+                    Grid.Column="3"
+                    Padding="0"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    Content="{md:PackIcon Kind=Close}"
+                    Command="{Binding ClosePageCmd}"/>
+        </Grid>
+
+        <controls:FluentScrollViewer Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding Player.Score}"
+                          ItemTemplate="{StaticResource ContestantDetailTemplate}"/>
+        </controls:FluentScrollViewer>
+    </Grid>
+</UserControl>

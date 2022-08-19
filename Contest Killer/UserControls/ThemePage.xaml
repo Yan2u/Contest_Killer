@@ -1,0 +1,185 @@
+﻿<local:PageViewBase x:Class="Contest_Killer.UserControls.ThemePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Contest_Killer.UserControls"
+             mc:Ignorable="d"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+			 xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
+			 xmlns:ut="clr-namespace:Contest_Killer.Utils"
+			 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:mdc="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
+             xmlns:controls="clr-namespace:Contest_Killer.UserControls"
+             d:DesignHeight="450" d:DesignWidth="800"
+             Height="720" Width="800"
+             d:DataContext="{d:DesignInstance Type={x:Type vm:ThemePageViewModel}}">
+    <Grid Margin="10,10,10,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{StaticResource lang_SelectThemeColors}"
+                           FontWeight="Bold"
+                           Margin="10,0,0,0"
+                           VerticalAlignment="Center"
+                           FontSize="20px"/>
+            <Button Style="{StaticResource MaterialDesignIconButton}"
+                    Grid.Column="1" Margin="0,0,10,0"
+                    Command="{x:Static md:DialogHost.CloseDialogCommand}"
+                    CommandParameter="{StaticResource boolFalse}">
+                <md:PackIcon Kind="Close"/>
+            </Button>
+            <Button Style="{StaticResource MaterialDesignIconButton}"
+                    Grid.Column="2" Margin="0,0,10,0"
+                    Command="{x:Static md:DialogHost.CloseDialogCommand}"
+                    CommandParameter="{StaticResource boolTrue}">
+                <md:PackIcon Kind="Check"/>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="1" Margin="20,20,20,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="{StaticResource lang_ThemeAdjustment}"
+                       FontWeight="Medium" FontSize="18px"
+                       Margin="0,0,10,0"/>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="0"
+                           Text="{StaticResource lang_ContrastRatio}"
+                           FontSize="16px" FontWeight="Medium"
+                           VerticalAlignment="Center"
+                           Margin="15,0,10,10"/>
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Slider Grid.Column="0"
+                            IsSnapToTickEnabled="True"
+                            Margin="15,0,10,10"
+                            Minimum="1" Maximum="21"
+                            TickFrequency="0.1"
+                            VerticalAlignment="Center"
+                            Value="{Binding DesiredContrastRatio}"/>
+                    <TextBlock FontWeight="Medium" FontSize="16px"
+                               Grid.Column="1" Text="{Binding DesiredContrastRatio, StringFormat={}{0:F2}}"/>
+                </Grid>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="1"
+                           Text="{StaticResource lang_Contrast}"
+                           FontSize="16px" FontWeight="Medium"
+                           VerticalAlignment="Center"
+                           Margin="15,0,10,0"/>
+                <ComboBox Grid.Column="1"
+                          Grid.Row="1"
+                          FontSize="16px"
+                          HorizontalAlignment="Left"
+                          Margin="10,0,10,0"
+                          ItemsSource="{Binding ContrastValues}"
+                          SelectedItem="{Binding ContrastValue}"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="6*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="20,0,0,10"
+                       Text="{StaticResource lang_Mode}" FontSize="16px"
+                       FontWeight="Medium"
+                       VerticalAlignment="Center"
+                       Grid.Row="0" Grid.Column="0"/>
+            <ListBox Margin="0,0,10,10"
+                     Style="{StaticResource MaterialDesignToolToggleListBox}"
+                     Grid.Row="0" Grid.Column="1"
+                     FontSize="16px"
+                     SelectedIndex="{Binding Selected}"
+                     HorizontalAlignment="Center">
+                <ListBoxItem Content="{StaticResource lang_PrimaryColor}"/>
+                <ListBoxItem Content="{StaticResource lang_PrimaryFontColor}"/>
+            </ListBox>
+            <TextBlock Margin="20,0,0,10"
+                       Text="{StaticResource lang_Preview}" FontSize="16px"
+                       FontWeight="Medium"
+                       VerticalAlignment="Center"
+                       Grid.Row="1" Grid.Column="0"/>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Margin="10,0,10,10"
+                        FontSize="16px"
+                        Grid.Column="0"
+                        Background="{Binding PrimaryColor, Converter={StaticResource HexStringColorCtr}}"
+                        BorderBrush="{Binding PrimaryColor, Converter={StaticResource HexStringColorCtr}}"
+                        Foreground="{Binding PrimaryFontColor, Converter={StaticResource HexStringColorCtr}}"
+                        Content="{StaticResource lang_Primary}"/>
+            </Grid>
+        </Grid>
+        <TabControl Grid.Row="3"
+					Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+					HorizontalContentAlignment="Center"
+					md:NavigationRailAssist.ShowSelectionBackground="True"
+					md:NavigationRailAssist.SelectionCornerRadius="10"
+					FontFamily="{StaticResource MiSans}"
+					TabStripPlacement="Bottom"
+					Background="Transparent">
+            <TabItem Width="auto" Height="auto" Padding="10">
+                <TabItem.Header>
+                    <StackPanel Width="auto" Height="auto">
+                        <md:PackIcon Kind="Palette"
+                                     Height="20px" Width="20px"
+                                     HorizontalAlignment="Center"/>
+                        <TextBlock Text="MD Palette"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <controls:FluentScrollViewer>
+                    <ItemsControl ItemsSource="{Binding Swatches}"
+                                  ItemTemplate="{StaticResource ThemePageSwatchesTemplate}"
+                                  PreviewMouseWheel="PagePreviewMouseWheel"
+                                  Margin="10,0,10,10">
+                    </ItemsControl>
+                </controls:FluentScrollViewer>
+            </TabItem>
+            <TabItem Width="auto" Height="auto" Padding="10"
+                     Margin="5,0,5,0">
+                <TabItem.Header>
+                    <StackPanel Width="auto" Height="auto">
+                        <md:PackIcon Kind="InvertColors"
+                                     Height="20px" Width="20px"
+                                     HorizontalAlignment="Center"/>
+                        <TextBlock Text="{StaticResource lang_Custom}"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <md:ColorPicker Margin="10" Color="{Binding CustomColor, Delay=25}"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</local:PageViewBase>

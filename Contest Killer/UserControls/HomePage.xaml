@@ -1,0 +1,201 @@
+﻿<local:PageViewBase x:Class="Contest_Killer.UserControls.HomePage"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:local="clr-namespace:Contest_Killer.UserControls"
+			 mc:Ignorable="d" 
+			 xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+			 xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
+			 xmlns:ut="clr-namespace:Contest_Killer.Utils"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:controls="clr-namespace:Contest_Killer.UserControls"
+			 d:DesignHeight="720" d:DesignWidth="1080" Margin="5,10,5,0"
+			 d:DataContext="{d:DesignInstance Type=vm:HomePageViewModel}"
+             AllowDrop="True">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="DragEnter">
+            <i:InvokeCommandAction Command="{Binding DragEnterCmd}"
+                                   PassEventArgsToCommand="True"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Drop">
+            <i:InvokeCommandAction Command="{Binding DragDropCmd}"
+                                   PassEventArgsToCommand="True"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+	<UserControl.Resources>
+		<DataTemplate x:Key="RecentContestTemplate">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<TextBlock Grid.Row="0" Margin="0,0,0,5" Text="{Binding Title}" FontSize="18px" FontWeight="Bold"/>
+				<Grid Grid.Row="1" Margin="0,0,0,5">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+					<md:PackIcon Grid.Column="0" Kind="InformationOutline" Height="20px" Width="20px" Margin="0,0,10,0"/>
+					<TextBlock Grid.Column="1" TextTrimming="CharacterEllipsis" Text="{Binding Description}" FontSize="16px" FontWeight="Medium"/>
+				</Grid>
+				<Grid Grid.Row="2" Margin="0,0,0,5">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+					<md:PackIcon Grid.Column="0" Kind="ClockOutline" Height="20px" Width="20px" Margin="0,0,10,0"/>
+					<TextBlock Grid.Column="1" Text="{Binding CreateTime, StringFormat={}{0:yyyy-MM-dd HH:mm}}" FontSize="16px" FontWeight="Medium"/>
+				</Grid>
+			</Grid>
+		</DataTemplate>
+	</UserControl.Resources>
+	<controls:FluentScrollViewer>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto"/>
+				<RowDefinition Height="auto"/>
+				<RowDefinition Height="auto"/>
+			</Grid.RowDefinitions>
+			<md:Card Grid.Row="0"
+				 Background="Transparent"
+				 Margin="10"
+				 UniformCornerRadius="5">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+					<Grid Grid.Row="0" Margin="15,10,0,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="Auto"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Grid.Column="0" Text="{StaticResource lang_RecentContest}"
+								   Foreground="{DynamicResource MaterialDesignBody}"
+								   FontWeight="Bold" FontSize="24px"
+								   VerticalAlignment="Center"/>
+						<Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+								Grid.Column="1" Margin="0,0,10,0"
+								Command="{Binding DeleteItemCmd}" CommandParameter="-1" >
+							<md:PackIcon Kind="Delete"/>
+						</Button>
+					</Grid>
+					<TextBlock Grid.Row="1" Margin="0,10,0,15"
+                               Foreground="{DynamicResource MaterialDesignBody}"
+							   FontSize="20px" FontWeight="Medium"
+							   Visibility="{Binding ElementName=RecentContestList, Path=Items.Count, Converter={StaticResource IsListBoxEmptyCtr}}"
+							   Text="{StaticResource lang_NoRecentContest}"
+							   VerticalAlignment="Center"
+							   HorizontalAlignment="Center"/>
+					<ListBox Grid.Row="1" Margin="10,0,10,15"
+							 x:Name="RecentContestList"
+							 ItemTemplate="{StaticResource RecentContestTemplate}"
+							 Style="{StaticResource MaterialDesignNavigationPrimaryListBox}"
+							 SelectionChanged="PageSelectionChanged"
+							 PreviewMouseWheel="PagePreviewMouseWheel"
+							 ItemsSource="{Binding RecentContests}"
+							 SelectedIndex="{Binding Selected, Mode=TwoWay}">
+						<ListBox.ContextMenu>
+							<ContextMenu FontWeight="Medium">
+								<MenuItem Icon="{md:PackIcon Kind=OpenInNew}" Header="{StaticResource lang_Open}"
+										  Command="{Binding OpenCmd}" CommandParameter="{Binding Selected}"/>
+                                <MenuItem Icon="{md:PackIcon Kind=Delete}" Header="{StaticResource lang_Delete}"
+										  Command="{Binding DeleteItemCmd}" CommandParameter="{Binding Selected}"/>
+							</ContextMenu>
+						</ListBox.ContextMenu>
+					</ListBox>
+				</Grid>
+			</md:Card>
+
+			<md:Card Grid.Row="1"
+					 Background="Transparent"
+					 Margin="10"
+					 UniformCornerRadius="5">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+					<Grid Grid.Row="0" Margin="15,10,0,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="auto"/>
+							<ColumnDefinition Width="auto"/>
+						</Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{StaticResource lang_Operations}"
+								   Foreground="{DynamicResource MaterialDesignBody}"
+								   FontWeight="Bold" FontSize="24px"
+								   VerticalAlignment="Center"/>
+						<md:PackIcon Grid.Column="1"
+									 Foreground="{DynamicResource MaterialDesignBody}"
+									 Kind="Information" Width="20px" Height="20px"
+									 FontWeight="Medium" FontSize="16px"
+									 VerticalAlignment="Center"
+									 Margin="5,0,0,0"
+									 ToolTip="{StaticResource lang_DragFolderHelp}"/>
+					</Grid>
+					<Grid Grid.Row="1" Margin="15,15,15,0">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="auto"/>
+							<RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0"
+								Style="{StaticResource MaterialDesignFlatButton}"
+								Height="auto"
+								Command="{Binding OpenNewContestCmd}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon Kind="ApplicationImport"
+												 Margin="0,10,10,10"
+												 Height="20px" Width="20px"
+												 VerticalAlignment="Center"/>
+                                    <TextBlock Text="{StaticResource lang_OpenCreateContest}"
+											   Margin="0,10,0,10"
+											   FontWeight="Medium"
+											   FontSize="20px"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="1"
+								Style="{StaticResource MaterialDesignFlatButton}"
+								Height="auto"
+                                Command="{Binding OpenSettingsCmd}">
+							<Button.Content>
+								<StackPanel Orientation="Horizontal">
+									<md:PackIcon Kind="SettingsOutline"
+												 Margin="0,10,10,10"
+												 Height="24px" Width="24px"
+												 VerticalAlignment="Center"/>
+									<TextBlock Text="{StaticResource lang_Settings}"
+											   Margin="0,10,0,10"
+											   FontWeight="Medium"
+											   FontSize="20px"/>
+								</StackPanel>
+							</Button.Content>
+						</Button>
+						<Button Grid.Row="2"
+								Style="{StaticResource MaterialDesignFlatButton}"
+								Height="auto"
+                                Command="{Binding OpenAboutPageCmd}">
+							<Button.Content>
+								<StackPanel Orientation="Horizontal">
+									<md:PackIcon Kind="AboutOutline"
+												 Margin="0,10,10,10"
+												 Height="24px" Width="24px"
+												 VerticalAlignment="Center"/>
+                                    <TextBlock Text="{StaticResource lang_OpenSource}"
+											   Margin="0,10,0,10"
+											   FontWeight="Medium"
+											   FontSize="20px"/>
+								</StackPanel>
+							</Button.Content>
+						</Button>
+					</Grid>
+				</Grid>
+			</md:Card>
+		</Grid>
+	</controls:FluentScrollViewer>
+</local:PageViewBase>

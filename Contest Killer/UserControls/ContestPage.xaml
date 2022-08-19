@@ -1,0 +1,75 @@
+﻿<local:PageViewBase x:Class="Contest_Killer.UserControls.ContestPage"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:local="clr-namespace:Contest_Killer.UserControls"
+			 mc:Ignorable="d"
+			 xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+			 xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
+			 xmlns:ut="clr-namespace:Contest_Killer.Utils"
+			 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+			 xmlns:page="clr-namespace:Contest_Killer.UserControls"
+			 d:DesignHeight="720" d:DesignWidth="1080"  Margin="5,10,5,0"
+             d:DataContext="{d:DesignInstance Type=vm:ContestPageViewModel}">
+    <local:PageViewBase.InputBindings>
+        <KeyBinding Gesture="Ctrl + S" Command="{Binding SaveContestCmd}"/>
+    </local:PageViewBase.InputBindings>
+	<Grid>
+        <TabControl Margin="5,0,5,0"
+					Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+                    md:NavigationRailAssist.SelectionCornerRadius="10"
+					HorizontalContentAlignment="Center"
+					FontFamily="{StaticResource MiSans}"
+					TabStripPlacement="Bottom"
+					Background="Transparent">
+            <TabControl.Items>
+				<TabItem Width="auto" Height="auto" Padding="10"
+                         IsEnabled="{Binding IsTabItemEnabled}">
+					<TabItem.Header>
+						<StackPanel Width="auto" Height="auto">
+							<md:PackIcon Kind="ViewDashboard"
+										 HorizontalAlignment="Center"
+										 Height="20px" Width="20px"/>
+							<TextBlock Text="{StaticResource lang_Overview}"
+									   HorizontalAlignment="Center"/>
+						</StackPanel>
+					</TabItem.Header>
+					<page:ContestOverviewPage />
+				</TabItem>
+				<TabItem Width="auto" Height="auto"
+						 Padding="10" Margin="5,0,5,0"
+                         IsEnabled="{Binding IsTabItemEnabled}">
+					<TabItem.Header>
+						<StackPanel Width="auto" Height="auto">
+							<md:PackIcon Kind="HeadQuestion"
+										 HorizontalAlignment="Center"
+										 Height="20px" Width="20px"/>
+							<TextBlock Text="{StaticResource lang_Problems}"
+									   HorizontalAlignment="Center"/>
+						</StackPanel>
+					</TabItem.Header>
+					<page:ContestProblemPageView />
+				</TabItem>
+				<TabItem Width="auto" Height="auto"
+						 Padding="10" Margin="5,0,5,0">
+					<TabItem.Header>
+						<StackPanel Width="auto" Height="auto">
+							<md:PackIcon Kind="CheckboxMultipleMarked"
+										 HorizontalAlignment="Center"
+										 Height="20px" Width="20px"/>
+							<TextBlock Text="{StaticResource lang_Judge}"
+									   HorizontalAlignment="Center"/>
+						</StackPanel>
+					</TabItem.Header>
+					<page:ContestJudgePageView DataContext="{Binding}"/>
+				</TabItem>
+			</TabControl.Items>
+		</TabControl>
+		<md:Snackbar VerticalAlignment="Bottom"
+					 FontFamily="{StaticResource MiSans}"
+					 HorizontalAlignment="Center"
+					 MessageQueue="{Binding BarMessageQueue}"/>
+	</Grid>
+
+</local:PageViewBase>

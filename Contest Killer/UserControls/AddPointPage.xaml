@@ -1,0 +1,170 @@
+﻿<local:PageViewBase x:Class="Contest_Killer.UserControls.AddPointPage"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:local="clr-namespace:Contest_Killer.UserControls"
+			 mc:Ignorable="d"
+			 xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+			 xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
+			 xmlns:ut="clr-namespace:Contest_Killer.Utils"
+			 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+			 d:DataContext="{d:DesignInstance Type=vm:AddPointInfo}"
+			 d:DesignHeight="450" d:DesignWidth="800"
+			 Width="720" MaxHeight="720"
+			 AllowDrop="True">
+	<i:Interaction.Triggers>
+		<i:EventTrigger EventName="DragEnter">
+			<i:InvokeCommandAction Command="{Binding DragEnterCmd}"
+								   PassEventArgsToCommand="True"/>
+		</i:EventTrigger>
+		<i:EventTrigger EventName="Drop">
+			<i:InvokeCommandAction Command="{Binding DragDropCmd}"
+								   PassEventArgsToCommand="True"/>
+		</i:EventTrigger>
+	</i:Interaction.Triggers>
+	<md:DialogHost DialogTheme="Inherit"
+				   IsOpen="{Binding IsDialogOpen, Mode=TwoWay}"
+				   DialogContent="{Binding DialogContent}">
+		<i:Interaction.Triggers>
+			<i:EventTrigger EventName="DialogClosing">
+				<i:InvokeCommandAction Command="{Binding CloseCommand}"
+									   PassEventArgsToCommand="True"/>
+			</i:EventTrigger>
+		</i:Interaction.Triggers>
+		<Grid AllowDrop="True">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="auto"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			<StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+				<TextBlock Margin="20,20,40,10"
+						   FontSize="20px"
+						   FontWeight="Bold"
+						   Text="Configure Point"/>
+				<TextBlock Margin="20,0,40,10"
+						   FontSize="16px"
+						   FontWeight="Medium"
+						   Text="Drag files into this panel to add"/>
+			</StackPanel>
+			<ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+					  VerticalScrollBarVisibility="Hidden"
+					  Margin="0,10,0,10">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="auto"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="auto"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<TextBlock Text="Score"
+							   VerticalAlignment="Center"
+							   Grid.Row="0" Grid.Column="0"
+							   FontSize="18px" FontWeight="Bold"
+							   Margin="20,0,0,0"/>
+					<TextBox Text="{Binding Point.Score, Mode=TwoWay}"
+							 Grid.Row="0" Grid.Column="1"
+							 HorizontalAlignment="Stretch"
+							 VerticalAlignment="Center"
+							 FontSize="18px" FontFamily="{StaticResource MiSans}"
+							 Margin="20,0,20,0"/>
+					<StackPanel Grid.Row="1" Grid.Column="0">
+						<TextBlock Text="In/Out Files"
+							   Grid.Row="0" Grid.Column="0"
+							   FontSize="18px" FontWeight="Bold"
+							   Margin="20,20,0,0"/>
+						<Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+								Grid.Column="1"
+								Margin="0,20,0,10"
+								HorizontalAlignment="Center"
+									Command="{Binding ShowHelpCmd}">
+							<md:PackIcon  Kind="Help"/>
+						</Button>
+						<Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+								Grid.Column="1"
+								Margin="0,10,0,10"
+								Command="{Binding DeleteCmd}"
+								CommandParameter="-1"
+								HorizontalAlignment="Center">
+							<md:PackIcon  Kind="Delete"/>
+						</Button>
+						<Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+								Grid.Column="1"
+								Margin="0,10,0,10"
+								Command="{Binding CheckPairCmd}"
+								CommandParameter="{StaticResource boolFalse}"
+								HorizontalAlignment="Center">
+							<md:PackIcon  Kind="CheckAll"/>
+							<Button.ContextMenu>
+								<ContextMenu>
+									<MenuItem Header="Clear all empty pairs"
+											  Command="{Binding CheckPairCmd}"
+											  CommandParameter="{StaticResource boolTrue}"/>
+								</ContextMenu>
+							</Button.ContextMenu>
+							<Button.ToolTip>
+								<TextBlock FontWeight="Medium">
+									<Run Text="{StaticResource lang_CheckPointBtnTip1}"/>
+									<LineBreak/>
+									<Run Text="{StaticResource lang_CheckPointBtnTip2}"/>
+								</TextBlock>
+							</Button.ToolTip>
+						</Button>
+					</StackPanel>
+					<ListBox x:Name="FileIOPairList"
+							 Style="{StaticResource MaterialDesignNavigationPrimaryListBox}"
+							 Grid.Row="1" Grid.Column="1"
+							 FontSize="15px"
+							 Margin="10"
+							 SelectionMode="Extended"
+							 ItemsSource="{Binding Point.Files}"
+							 ItemTemplate="{StaticResource PointFileNameTemplate}"
+							 PreviewMouseWheel="PagePreviewMouseWheel">
+						<i:Interaction.Triggers>
+							<i:EventTrigger EventName="Loaded">
+								<i:InvokeCommandAction Command="{Binding ListLoadedCmd}"
+													   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}}"/>
+							</i:EventTrigger>
+						</i:Interaction.Triggers>
+						<ListBox.ContextMenu>
+							<ContextMenu>
+								<MenuItem Header="Delete selected"
+										  Icon="{md:PackIcon Kind=Delete}"
+										  Command="{Binding DeleteCmd}"
+										  CommandParameter="0"/>
+							</ContextMenu>
+						</ListBox.ContextMenu>
+					</ListBox>
+					<TextBlock Grid.Row="1" Grid.Column="1"
+							   HorizontalAlignment="Center"
+							   VerticalAlignment="Center"
+							   FontSize="16px" FontWeight="Medium"
+							   Text="No Files"
+							   Visibility="{Binding ElementName=FileIOPairList, Path=Items.Count, Converter={StaticResource IsListBoxEmptyCtr}}"/>
+				</Grid>
+			</ScrollViewer>
+			<Button x:Name="BtnCancel" Grid.Row="2" Grid.Column="0"
+					Style="{StaticResource MaterialDesignFlatButton}"
+					Content="Cancel" Margin="20"
+					IsEnabled="{Binding IsCancelEnabled, FallbackValue=True}"
+					Command="{x:Static md:DialogHost.CloseDialogCommand}" Cursor="Hand"
+					CommandParameter="{StaticResource boolFalse}">
+			</Button>
+			<Button x:Name="BtnOK" Grid.Row="2" Grid.Column="1"
+					Style="{StaticResource MaterialDesignFlatButton}"
+					Content="OK" Margin="20"
+					Command="{x:Static md:DialogHost.CloseDialogCommand}" Cursor="Hand"
+					IsEnabled="{Binding ElementName=FileIOPairList, Path=Items.Count, Converter={StaticResource ListEmptyValidator}}"
+					CommandParameter="{StaticResource boolTrue}">
+			</Button>
+		</Grid>
+	</md:DialogHost>
+</local:PageViewBase>

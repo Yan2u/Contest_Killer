@@ -1,0 +1,271 @@
+﻿<UserControl x:Class="Contest_Killer.UserControls.AboutPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Contest_Killer.UserControls"
+             mc:Ignorable="d"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+			 xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
+			 xmlns:ut="clr-namespace:Contest_Killer.Utils"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:controls="clr-namespace:Contest_Killer.UserControls"
+             d:DesignHeight="450" d:DesignWidth="800"
+             Width="1000">
+    <Grid>
+        <Grid Margin="10,10,10,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="20,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{StaticResource lang_AboutOpenSource}"
+						   Foreground="{DynamicResource MaterialDesignBody}"
+						   FontWeight="Bold" FontSize="24px"
+						   VerticalAlignment="Center"/>
+                <Button Grid.Column="1"
+                        Margin="0,0,10,0"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        Content="{md:PackIcon Kind=Close}"
+                        Command="{x:Static md:DialogHost.CloseDialogCommand}"/>
+            </Grid>
+            <Grid Grid.Row="1" Margin="15,0,15,0" TextBlock.TextAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{StaticResource lang_About}"
+					       FontWeight="Bold" FontSize="20px"
+					       Grid.Row="0" Grid.Column="0"
+					       VerticalAlignment="Center"/>
+                <TextBlock Text="Yan2u - Contest Killer"
+						   FontWeight="Bold" FontSize="20px"
+						   Grid.Row="0" Grid.Column="1"
+						   VerticalAlignment="Center"/>
+                <Button Grid.Row="0" Grid.Column="2"
+						Style="{StaticResource MaterialDesignFlatButton}"
+						Height="auto"
+                        Command="{x:Static controls:AboutPage.OpenUrlCmd}"
+                        CommandParameter="https://github.com/Yan2u">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="Github"
+										 Margin="0,10,10,10"
+									     Height="24px" Width="24px"
+										 VerticalAlignment="Center"/>
+                            <TextBlock Text="Contest Killer"
+									   Margin="0,10,0,10"
+									    FontWeight="Bold"
+									    FontSize="20px"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+                <TextBlock Text="UI &amp; Theme"
+								   FontWeight="Medium" FontSize="20px"
+								   Grid.Row="1" Grid.Column="0"
+								   VerticalAlignment="Center"/>
+                <TextBlock Text="MaterialDesignThemes.Wpf"
+								   FontWeight="Medium" FontSize="20px"
+								   Grid.Row="1" Grid.Column="1"
+								   VerticalAlignment="Center"/>
+                <Button Grid.Row="1" Grid.Column="2"
+								Style="{StaticResource MaterialDesignFlatButton}"
+								Height="auto"
+                        Command="{x:Static controls:AboutPage.OpenUrlCmd}"
+                        CommandParameter="https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="Github"
+												 Margin="0,10,10,10"
+												 Height="24px" Width="24px"
+												 VerticalAlignment="Center"/>
+                            <TextBlock Text="MaterialDesignInXAML"
+											   Margin="0,10,0,10"
+											   FontWeight="Medium"
+											   FontSize="20px"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+                <TextBlock Text="Judger Core"
+								   FontWeight="Medium" FontSize="20px"
+								   Grid.Row="2" Grid.Column="0"
+								   VerticalAlignment="Center"/>
+                <TextBlock Text="CCR-Plus"
+								   FontWeight="Medium" FontSize="20px"
+								   Grid.Row="2" Grid.Column="1"
+								   VerticalAlignment="Center"/>
+                <Button Grid.Row="2" Grid.Column="2"
+								Style="{StaticResource MaterialDesignFlatButton}"
+								Height="auto"
+								Command="{x:Static controls:AboutPage.OpenUrlCmd}"
+                        CommandParameter="https://github.com/sxyzccr/CCR-Plus">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="Github"
+												 Margin="0,10,10,10"
+												 Height="24px" Width="24px"
+												 VerticalAlignment="Center"/>
+                            <TextBlock Text="sxyzccr/CCR-Plus"
+											   Margin="0,10,0,10"
+											   FontWeight="Medium"
+											   FontSize="20px"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+                <TextBlock Text="JSON"
+								   FontWeight="Medium" FontSize="20px"
+								   Grid.Row="3" Grid.Column="0"
+								   VerticalAlignment="Center"/>
+                <TextBlock Text="Newtonsoft.JSON"
+								   FontWeight="Medium" FontSize="20px"
+								   Grid.Row="3" Grid.Column="1"
+								   VerticalAlignment="Center"/>
+                <Button Grid.Row="3" Grid.Column="2"
+								Style="{StaticResource MaterialDesignFlatButton}"
+								Height="auto"
+                        Command="{x:Static controls:AboutPage.OpenUrlCmd}"
+                        CommandParameter="https://github.com/JamesNK/Newtonsoft.Json">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="Github"
+												 Margin="0,10,10,10"
+												 Height="24px" Width="24px"
+												 VerticalAlignment="Center"/>
+                            <TextBlock Text="JamesNK/Newtonsoft.Json"
+											   Margin="0,10,0,10"
+											   FontWeight="Medium"
+											   FontSize="20px"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+                <TextBlock Text="MVVM"
+								   FontWeight="Medium" FontSize="20px"
+								   Grid.Row="4" Grid.Column="0"
+								   VerticalAlignment="Center"/>
+                <TextBlock Text="Galasoft.MVVMLight"
+								   FontWeight="Medium" FontSize="20px"
+								   Grid.Row="4" Grid.Column="1"
+								   VerticalAlignment="Center"/>
+                <Button Grid.Row="4" Grid.Column="2"
+								Style="{StaticResource MaterialDesignFlatButton}"
+								Height="auto"
+                        Command="{x:Static controls:AboutPage.OpenUrlCmd}"
+                        CommandParameter="https://galasoft.ch/presentations/">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="Github"
+												 Margin="0,10,10,10"
+												 Height="24px" Width="24px"
+												 VerticalAlignment="Center"/>
+                            <TextBlock Text="Galasoft Presentations"
+											   Margin="0,10,0,10"
+											   FontWeight="Medium"
+											   FontSize="20px"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+                <TextBlock Text="Behaviors"
+								   FontWeight="Medium" FontSize="20px"
+								   Grid.Row="5" Grid.Column="0"
+								   VerticalAlignment="Center"/>
+                <TextBlock Text="Microsoft.Xaml.Behaviors.Wpf"
+								   FontWeight="Medium" FontSize="20px"
+								   Grid.Row="5" Grid.Column="1"
+								   VerticalAlignment="Center"/>
+                <Button Grid.Row="5" Grid.Column="2"
+								Style="{StaticResource MaterialDesignFlatButton}"
+								Height="auto"
+                        Command="{x:Static controls:AboutPage.OpenUrlCmd}"
+                        CommandParameter="https://github.com/microsoft/XamlBehaviorsWpf">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="Github"
+												 Margin="0,10,10,10"
+												 Height="24px" Width="24px"
+												 VerticalAlignment="Center"/>
+                            <TextBlock Text="microsoft/XamlBehaviorsWpf"
+											   Margin="0,10,0,10"
+											   FontWeight="Medium"
+											   FontSize="20px"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+                <TextBlock Text="Fluent ScrollViewer"
+								   FontWeight="Medium" FontSize="20px"
+								   Grid.Row="6" Grid.Column="0"
+								   VerticalAlignment="Center"/>
+                <TextBlock Text="ScrollViewerAnimation"
+								   FontWeight="Medium" FontSize="20px"
+								   Grid.Row="6" Grid.Column="1"
+								   VerticalAlignment="Center"/>
+                <Button Grid.Row="6" Grid.Column="2"
+								Style="{StaticResource MaterialDesignFlatButton}"
+								Height="auto"
+                        Command="{x:Static controls:AboutPage.OpenUrlCmd}"
+                        CommandParameter="https://blog.csdn.net/qq_41872328/article/details/119573714">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="Web"
+												 Margin="0,10,10,10"
+												 Height="24px" Width="24px"
+												 VerticalAlignment="Center"/>
+                            <TextBlock Text="流畅地滚动ScrollViewer"
+									    Margin="0,10,0,10"
+										FontWeight="Medium"
+										FontSize="20px"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+                <TextBlock Text="Global Font"
+								   FontWeight="Medium" FontSize="20px"
+								   Grid.Row="7" Grid.Column="0"
+								   VerticalAlignment="Center"/>
+                <TextBlock Text="Mi Sans"
+								   FontWeight="Medium" FontSize="20px"
+								   Grid.Row="7" Grid.Column="1"
+								   VerticalAlignment="Center"/>
+                <Button Grid.Row="7" Grid.Column="2"
+								Style="{StaticResource MaterialDesignFlatButton}"
+								Height="auto"
+                        Command="{x:Static controls:AboutPage.OpenUrlCmd}"
+                        CommandParameter="https://baike.baidu.com/item/MiSans/60863492">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <md:PackIcon Kind="Web"
+												 Margin="0,10,10,10"
+												 Height="24px" Width="24px"
+												 VerticalAlignment="Center"/>
+                            <TextBlock Text="MIUI13全新系统字体"
+									    Margin="0,10,0,10"
+										FontWeight="Medium"
+										FontSize="20px"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

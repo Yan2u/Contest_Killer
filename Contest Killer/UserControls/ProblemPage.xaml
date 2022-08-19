@@ -1,0 +1,292 @@
+﻿<local:PageViewBase x:Class="Contest_Killer.UserControls.ProblemPage"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:local="clr-namespace:Contest_Killer.UserControls"
+			 mc:Ignorable="d"
+			 xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+			 xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
+			 xmlns:ut="clr-namespace:Contest_Killer.Utils"
+			 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+			 xmlns:controls="clr-namespace:Contest_Killer.UserControls"
+			 d:DataContext="{d:DesignInstance Type=vm:ProblemPageViewModel}"
+			 d:DesignHeight="600" d:DesignWidth="800"
+			 Height="600" Width="800">
+	<UserControl.Resources>
+		<ut:ProblemsPtsCtr x:Key="PtsCtr"/>
+	</UserControl.Resources>
+	<md:DialogHost DialogTheme="Inherit"
+				   IsOpen="{Binding IsDialogOpen, Mode=TwoWay}"
+				   DialogContent="{Binding DialogContent}">
+		<i:Interaction.Triggers>
+			<i:EventTrigger EventName="DialogClosing">
+				<i:InvokeCommandAction Command="{Binding CloseCommand}"
+									   PassEventArgsToCommand="True"/>
+			</i:EventTrigger>
+		</i:Interaction.Triggers>
+		<Grid Margin="10,0,10,0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Grid Grid.Row="0" Margin="0,20,0,0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Grid.Column="0"
+					   FontSize="24px" FontWeight="Bold"
+					   Foreground="{DynamicResource PrimaryHueMidBrush}"
+					   Text="{Binding Prob.Title}"
+					   Margin="10,0,0,0"
+					   TextTrimming="CharacterEllipsis"
+					   VerticalAlignment="Center"/>
+				<Button Margin="10,0,10,0"
+					Style="{StaticResource MaterialDesignIconButton}"
+					Grid.Column="1"
+					Command="{x:Static md:DialogHost.CloseDialogCommand}" Cursor="Hand"
+					CommandParameter="{StaticResource boolTrue}">
+					<md:PackIcon Kind="Check"/>
+				</Button>
+				<Button Margin="10,0,10,0"
+					Style="{StaticResource MaterialDesignIconButton}"
+					Grid.Column="2"
+					Visibility="{Binding CloseVisible}"
+					Command="{x:Static md:DialogHost.CloseDialogCommand}" Cursor="Hand"
+					CommandParameter="{StaticResource boolFalse}">
+					<md:PackIcon Kind="Close"/>
+				</Button>
+			</Grid>
+			<controls:FluentScrollViewer Grid.Row="1">
+				<StackPanel Margin="0,5,0,20">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="auto"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Text="{StaticResource lang_Overview}"
+						   Grid.Column="0"
+						   Margin="15,0,15,0"
+						   VerticalAlignment="Center"
+						   FontSize="20px" FontWeight="Bold"/>
+						<Border BorderBrush="{DynamicResource MaterialDesignDivider}"
+							BorderThickness="0 0 0 3"
+							Margin="15,0,15,0"
+							VerticalAlignment="Bottom"
+							Grid.Column="0"/>
+						<Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+							Grid.Column="1"
+							Margin="0,0,10,0"
+							Command="{Binding SwitchCmd}">
+							<md:PackIcon  Kind="{Binding PkIcon, FallbackValue=Edit}"/>
+						</Button>
+					</Grid>
+					<Grid Margin="25,10,25,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+							<RowDefinition Height="auto"/>
+							<RowDefinition Height="auto"/>
+							<RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+						</Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+								   Text="{StaticResource lang_TimeLimit}" Margin="0,0,0,10"
+								   FontSize="16px" FontWeight="Bold"/>
+
+						<TextBlock Text="{Binding Prob.TimeLimit}" Margin="30,0,10,0"
+								   Visibility="{Binding ShowVisibility, FallbackValue=Visible}"
+								   FontSize="16px" FontWeight="Medium"
+								   Grid.Row="0" Grid.Column="1"/>
+                        
+						<TextBox Text="{Binding Prob.TimeLimit, Mode=TwoWay}" Margin="30,0,10,10"
+								 Visibility="{Binding EditVisibility, FallbackValue=Collapsed}"
+								 FontSize="16px" FontWeight="Medium" FontFamily="{StaticResource MiSans}"
+								 Grid.Row="0" Grid.Column="1"/>
+
+						<TextBlock Grid.Row="1" Grid.Column="0"
+								   Text="{Binding Source={StaticResource lang_MemoryLimit}}" Margin="0,0,0,10"
+								   FontSize="16px" FontWeight="Bold"/>
+
+						<TextBlock Text="{Binding Prob.MemoryLimit, StringFormat={}{0:F2}}" Margin="30,0,10,0"
+								   Visibility="{Binding ShowVisibility, FallbackValue=Visible}"
+								   FontSize="16px" FontWeight="Medium"
+								   Grid.Row="1" Grid.Column="1"/>
+						<TextBox Text="{Binding Prob.MemoryLimit, Mode=TwoWay}" Margin="30,0,10,10"
+								 Visibility="{Binding EditVisibility, FallbackValue=Collapsed}"
+								 FontSize="16px" FontWeight="Medium" FontFamily="{StaticResource MiSans}"
+								 Grid.Row="1" Grid.Column="1" Cursor="Arrow"/>
+
+
+						<TextBlock Grid.Row="2" Grid.Column="0"
+								   Text="{StaticResource lang_Points}" Margin="0,0,0,10"
+								   FontSize="16px" FontWeight="Bold"/>
+
+						<TextBlock Text="{Binding Prob.Points.Count}" Margin="30,0,10,0"
+								   FontSize="16px" FontWeight="Medium"
+								   Grid.Row="2" Grid.Column="1"/>
+
+						<TextBlock Grid.Row="3" Grid.Column="0"
+								   Text="{StaticResource lang_Score}" Margin="0,0,0,10"
+								   FontSize="16px" FontWeight="Bold"/>
+
+						<TextBlock Text="{Binding Prob.TotalPoints}" Margin="30,0,10,0"
+								   FontSize="16px" FontWeight="Medium"
+								   Grid.Row="3" Grid.Column="1"/>
+
+                        <TextBlock Grid.Row="4" Grid.Column="0"
+								   Text="{StaticResource lang_ExtraCmd}"  Margin="0,0,0,10"
+                                   VerticalAlignment="Center"
+								   FontSize="16px" FontWeight="Bold"/>
+
+                        <TextBlock Text="{Binding Prob.ExtraCommand}" Margin="30,0,10,0"
+								   Visibility="{Binding ShowVisibility, FallbackValue=Visible}"
+								   FontSize="16px" FontWeight="Medium"
+								   Grid.Row="4" Grid.Column="1"/>
+                        <TextBox Text="{Binding Prob.ExtraCommand, Mode=TwoWay}" Margin="30,0,10,10"
+								 Visibility="{Binding EditVisibility, FallbackValue=Collapsed}"
+								 FontSize="16px" FontWeight="Medium" FontFamily="{StaticResource MiSans}"
+								 Grid.Row="4" Grid.Column="1" Cursor="Arrow"/>
+
+                        <TextBlock Grid.Row="5" Grid.Column="0"
+								   Text="{StaticResource lang_Type}"
+                                   VerticalAlignment="Center"
+								   FontSize="16px" FontWeight="Bold"/>
+
+                        <ListBox Grid.Row="5" Grid.Column="1"
+                                 Margin="30,0,10,0"
+                                 Style="{StaticResource MaterialDesignToolToggleListBox}"
+                                 ItemsSource="{x:Static vm:Problem.FileTypes}"
+                                 SelectedItem="{Binding Prob.FileType}"
+                                 SelectionMode="Single"
+                                 FontSize="13px" FontWeight="Medium" />
+                    </Grid>
+					<Grid Margin="0,20,0,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="auto"/>
+							<ColumnDefinition Width="auto"/>
+							<ColumnDefinition Width="auto"/>
+							<ColumnDefinition Width="auto"/>
+							<ColumnDefinition Width="auto"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Text="{StaticResource lang_TestPoints}"
+								   Grid.Column="0"
+								   Margin="15,0,15,0"
+								   VerticalAlignment="Center"
+								   FontSize="20px" FontWeight="Bold"/>
+						<Border BorderBrush="{DynamicResource MaterialDesignDivider}"
+								BorderThickness="0 0 0 3"
+								Margin="15,0,15,0"
+								VerticalAlignment="Bottom"
+								Grid.Column="0"/>
+						<Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+								Grid.Column="1"
+								Margin="0,0,10,0"
+								Command="{Binding AddPtsCmd}">
+							<md:PackIcon  Kind="Add"/>
+						</Button>
+						<Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+								Grid.Column="2"
+								Margin="0,0,10,0"
+								Command="{Binding DeletePtsCmd}"
+								CommandParameter="{StaticResource boolTrue}">
+							<md:PackIcon  Kind="DeleteEmpty"/>
+						</Button>
+						<Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+								Grid.Column="3"
+								Margin="0,0,10,0"
+								Command="{Binding MergePtsCmd}">
+							<md:PackIcon  Kind="Merge"/>
+						</Button>
+						<Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+								Grid.Column="4"
+								Margin="0,0,10,0"
+								Command="{Binding DividePtsCmd}">
+							<md:PackIcon  Kind="Divide"/>
+						</Button>
+						<Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+								Grid.Column="5"
+								Margin="0,0,10,0"
+								Command="{Binding SortPtsCmd}">
+							<md:PackIcon  Kind="Sort"/>
+						</Button>
+					</Grid>
+					<DataGrid Grid.Column="0"
+							  CanUserAddRows="False"
+							  CanUserDeleteRows="False"
+							  AutoGenerateColumns="False"
+							  CanUserResizeColumns="False"
+							  CanUserSortColumns="False"
+							  FontFamily="{StaticResource MiSans}"
+							  SelectionChanged="PageSelectionChanged"
+							  FontSize="16px"
+							  PreviewMouseWheel="PagePreviewMouseWheel"
+							  ItemsSource="{Binding Prob.Points, Mode=TwoWay}"
+							  SelectionMode="Extended"
+							  SelectionUnit="FullRow"
+							  Margin="10,10,10,0">
+						<i:Interaction.Triggers>
+							<i:EventTrigger EventName="Loaded">
+								<i:InvokeCommandAction Command="{Binding DataGridLoadedCmd}"
+													   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid}}}"/>
+							</i:EventTrigger>
+						</i:Interaction.Triggers>
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Files, Converter={StaticResource FileListToStrCtr}}"
+												Header="{StaticResource lang_IOFiles}"
+												Width="0.7*"
+												IsReadOnly="True">
+								<DataGridTextColumn.ElementStyle>
+									<Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
+										<Setter Property="VerticalAlignment" Value="Center"/>
+									</Style>
+								</DataGridTextColumn.ElementStyle>
+							</DataGridTextColumn>
+							<DataGridTextColumn Binding="{Binding Score}"
+												Header="{StaticResource lang_Score}"
+												Width="0.3*"
+												IsReadOnly="False">
+								<DataGridTextColumn.ElementStyle>
+									<Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
+										<Setter Property="VerticalAlignment" Value="Center"/>
+									</Style>
+								</DataGridTextColumn.ElementStyle>
+								<DataGridTextColumn.EditingElementStyle>
+									<Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+										<Setter Property="VerticalAlignment" Value="Center"/>
+										<Setter Property="HorizontalAlignment" Value="Stretch"/>
+									</Style>
+								</DataGridTextColumn.EditingElementStyle>
+							</DataGridTextColumn>
+						</DataGrid.Columns>
+						<DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="{StaticResource lang_Divide}"
+										  Icon="{md:PackIcon Kind=Divide}"
+										  Command="{Binding DividePtsCmd}"/>
+                                <MenuItem Header="{StaticResource lang_Merge}"
+										  Icon="{md:PackIcon Kind=Merge}"
+										  Command="{Binding MergePtsCmd}"/>
+                                <MenuItem Header="{StaticResource lang_Sort}"
+										  Icon="{md:PackIcon Kind=Sort}"
+										  Command="{Binding SortPtsCmd}"/>
+								<MenuItem Header="{StaticResource lang_Delete}"
+										  Icon="{md:PackIcon Kind=Remove}"
+										  Command="{Binding DeletePtsCmd}"
+										  CommandParameter="{StaticResource boolFalse}"/>
+							</ContextMenu>
+						</DataGrid.ContextMenu>
+					</DataGrid>
+				</StackPanel>
+			</controls:FluentScrollViewer>
+		</Grid>
+	</md:DialogHost>
+</local:PageViewBase>

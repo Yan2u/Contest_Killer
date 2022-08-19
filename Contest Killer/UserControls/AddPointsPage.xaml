@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="Contest_Killer.UserControls.AddPointsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Contest_Killer.UserControls"
+             mc:Ignorable="d"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
+             xmlns:ut="clr-namespace:Contest_Killer.Utils"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             d:DataContext="{d:DesignInstance Type=vm:AddPointsInfo}"
+             d:DesignHeight="450" d:DesignWidth="800"
+             Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Margin="20,20,40,20"
+                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                   FontSize="20px" TextWrapping="WrapWithOverflow"
+                   FontWeight="Bold"
+                   Text="Configure Points"/>
+        <Grid Margin="40,10,40,10"
+              Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+              VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Name Prefix: "
+                       Grid.Column="0" Grid.Row="0"
+                       Margin="0,0,10,15"
+                       VerticalAlignment="Center"
+                       FontSize="16px" FontWeight="Medium"/>
+            <TextBox Margin="0,0,0,15"
+                     Grid.Column="1" Grid.Row="0"
+                     HorizontalAlignment="Stretch"
+                     Text="{Binding NamePre, Mode=TwoWay}"
+                     FontFamily="{StaticResource MiSans}"
+                     FontSize="16px"
+                     md:HintAssist.HelperText="Filename will be : NamePrefix + Index.in/out"
+                     FontWeight="Medium" Cursor="Arrow"/>
+            <TextBlock Text="Amount to add: "
+                       Grid.Column="0" Grid.Row="1"
+                       Margin="0,0,10,15"
+                       VerticalAlignment="Center"
+                       FontSize="16px" FontWeight="Medium"/>
+            <TextBox Margin="0,0,0,15"
+                     Grid.Column="1" Grid.Row="1"
+                     HorizontalAlignment="Stretch"
+                     Text="{Binding Num, Mode=TwoWay}"
+                     FontFamily="{StaticResource MiSans}"
+                     FontSize="16px"
+                     md:HintAssist.HelperText="Only Integers"
+                     FontWeight="Medium" Cursor="Arrow"/>
+            <TextBlock Text="Score for each: "
+                       Grid.Column="0" Grid.Row="2"
+                       Margin="0,0,10,15"
+                       VerticalAlignment="Center"
+                       FontSize="16px" FontWeight="Medium"/>
+            <TextBox Margin="0,0,0,15"
+                     Grid.Column="1" Grid.Row="2"
+                     HorizontalAlignment="Stretch"
+                     Text="{Binding Score, Mode=TwoWay}"
+                     FontFamily="{StaticResource MiSans}"
+                     FontSize="16px"
+                     md:HintAssist.HelperText="Only Integers"
+                     FontWeight="Medium" Cursor="Arrow"/>
+        </Grid>
+        <Button x:Name="BtnCancel" Grid.Row="2" Grid.Column="0"
+                Style="{StaticResource MaterialDesignFlatButton}"
+                Content="Cancel" Margin="20"
+                Command="{x:Static md:DialogHost.CloseDialogCommand}">
+            <Button.CommandParameter>
+                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                    False
+                </system:Boolean>
+            </Button.CommandParameter>
+        </Button>
+        <Button x:Name="BtnOK" Grid.Row="2" Grid.Column="1"
+                Style="{StaticResource MaterialDesignFlatButton}"
+                Content="OK" Margin="20"
+                Command="{x:Static md:DialogHost.CloseDialogCommand}" Cursor="Hand">
+            <Button.CommandParameter>
+                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                    True
+                </system:Boolean>
+            </Button.CommandParameter>
+        </Button>
+    </Grid>
+</UserControl>

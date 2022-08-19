@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="Contest_Killer.UserControls.JudgeInfoPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Contest_Killer.UserControls"
+             mc:Ignorable="d"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+			 xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
+			 xmlns:ut="clr-namespace:Contest_Killer.Utils"
+			 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:controls="clr-namespace:Contest_Killer.UserControls"
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance Type=vm:ContestPageViewModel}">
+    <Grid Margin="20,20,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0">
+            <ProgressBar Value="{Binding CurPace}"
+                         Minimum="0" Maximum="{Binding CurTotal}"
+                         Margin="0,0,20,0"
+                         Style="{StaticResource MaterialDesignCircularProgressBar}"/>
+
+            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                    Content="{StaticResource lang_Stop}" FontSize="16px"
+                    Margin="0,0,10,0" Padding="5,0,5,0"
+                    Command="{Binding StopJudgeCmd}"/>
+
+            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                    Content="{StaticResource lang_Clear}" FontSize="16px"
+                    Margin="0,0,10,0" Padding="5,0,5,0"
+                    Command="{Binding ClearJudgeInfosCmd}"/>
+
+            <TextBlock Margin="10,0,10,0"
+                       FontWeight="Medium" FontSize="16px"
+                       VerticalAlignment="Center">
+                       <Run Text="{Binding CurrentTaskCnt}"/>
+                       <Run Text="/"/>
+                       <Run Text="{Binding TotalTaskCnt}"/>
+            </TextBlock>
+
+            <TextBlock Margin="10,0,0,0"
+                       FontWeight="Medium" FontSize="16px"
+                       VerticalAlignment="Center">
+                       <Run Text="{Binding JudgingPlayer}"/>
+                       <Run Text="-"/>
+                       <Run Text="{Binding JudgingProblem}"/>
+            </TextBlock>
+
+            <TextBlock Margin="10,0,10,0"
+                       FontWeight="Medium" FontSize="16px"
+                       VerticalAlignment="Center">
+                       <Run Text="{Binding CurPace}"/>
+                       <Run Text="/"/>
+                       <Run Text="{Binding CurTotal}"/>
+            </TextBlock>
+
+            <TextBlock Margin="10,0,0,0"
+                       FontWeight="Medium" FontSize="16px"
+                       VerticalAlignment="Center">
+                       <Run Text="{Binding CurState}"/>
+                       <Run Text="/"/>
+                       <Run Text="{Binding CurTime, StringFormat={}{0} ms, Mode=OneWay}"/>
+                       <Run Text="/"/>
+                       <Run Text="{Binding CurMemory, StringFormat={}{0:F2} MB, Mode=OneWay}"/>
+            </TextBlock>
+        </StackPanel>
+
+        <controls:FluentScrollViewer Grid.Row="1" Margin="0,10,0,0"
+                      ut:ScrollViewerHelper.AlwaysScrollToEnd="True">
+            <ItemsControl ItemTemplate="{StaticResource JudgeInfoTemplate}"
+                          ItemsSource="{Binding JudgeInfos}">
+                
+            </ItemsControl>
+        </controls:FluentScrollViewer>
+    </Grid>
+</UserControl>

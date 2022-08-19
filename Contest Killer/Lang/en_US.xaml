@@ -1,0 +1,412 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	d1p1:Ignorable="d"
+	xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:s="clr-namespace:System;assembly=mscorlib">
+	
+	<!--Message-->
+    <s:String x:Key="lang_BackHome">
+        Back to homepage
+    </s:String>
+    
+    <s:String x:Key="lang_Close">
+        Close
+    </s:String>
+
+    <s:String x:Key="lang_Save">
+        Save
+    </s:String>
+
+    <s:String x:Key="lang_RestartNeeded">
+        Need to Restart the App
+    </s:String>
+
+    <s:String x:Key="lang_Message">
+		Message
+	</s:String>
+
+	<s:String x:Key="lang_Input">
+		Input
+	</s:String>
+
+	<s:String x:Key="lang_Help">
+		Help
+	</s:String>
+
+	<s:String x:Key="lang_Attention">
+		Attention
+	</s:String>
+
+    <s:String x:Key="lang_Error">
+        Error
+    </s:String>
+
+    <s:String x:Key="lang_Export">
+        Export
+    </s:String>
+
+    <s:String x:Key="lang_Check">
+        Check
+    </s:String>
+
+    <s:String x:Key="lang_Run">
+        Run
+    </s:String>
+
+    <s:String x:Key="lang_Total">
+        Total
+    </s:String>
+
+    <s:String x:Key="lang_Ascending">
+        Ascending
+    </s:String>
+
+    <s:String x:Key="lang_Descending">
+        Descending
+    </s:String>
+
+    <s:String x:Key="lang_OK">
+        OK
+    </s:String>
+
+    <s:String x:Key="lang_Cancel">
+        Cancel
+    </s:String>
+
+    <s:String x:Key="lang_Stop">
+        Stop
+    </s:String>
+
+    <s:String x:Key="lang_Clear">
+        Clear
+    </s:String>
+
+    <s:String x:Key="lang_Home">
+        Home
+    </s:String>
+
+    <!-- Settings -->
+
+    <s:String x:Key="lang_SelectThemeColors" xml:space="preserve">Select Theme Colors</s:String>
+
+    <s:String x:Key="lang_ThemeAdjustment" xml:space="preserve">Theme Adjustment</s:String>
+
+    <s:String x:Key="lang_ContrastRatio" xml:space="preserve">Contrast Ratio</s:String>
+
+    <s:String x:Key="lang_Contrast">
+        Contrast
+    </s:String>
+
+    <s:String x:Key="lang_Mode">
+        Mode
+    </s:String>
+
+    <s:String x:Key="lang_Preview">
+        Preview
+    </s:String>
+
+    <s:String x:Key="lang_Primary">
+        Primary
+    </s:String>
+
+    <s:String x:Key="lang_Custom">
+        Custom
+    </s:String>
+
+    <s:String x:Key="lang_PrimaryColor" xml:space="preserve">Primary Color</s:String>
+
+    <s:String x:Key="lang_PrimaryFontColor" xml:space="preserve">Primary Font Color</s:String>
+
+    <s:String x:Key="lang_Compiler">
+        Compiler
+    </s:String>
+
+    <s:String x:Key="lang_CommandLine">
+        CMDLine
+    </s:String>
+
+    <s:String x:Key="lang_ChooseCompiler" xml:space="preserve">Choose Compiler</s:String>
+
+    <s:String x:Key="lang_CommandLinePara" xml:space="preserve">CommandLine Parameters</s:String>
+
+    <s:String x:Key="lang_CompilerConfigTip" xml:space="preserve">Defines In CommandLine: (Click to Cpy)</s:String>
+
+    <s:String x:Key="lang_SrcFileName" xml:space="preserve">Source File Name</s:String>
+
+    <s:String x:Key="lang_ExeFileName" xml:space="preserve">Executable File Name</s:String>
+
+    <s:String x:Key="lang_FileNameNoExt" xml:space="preserve">Filename Without Extension</s:String>
+
+    <s:String x:Key="lang_DoubleClickToSelect" xml:space="preserve">Double click to select</s:String>
+
+    <s:String x:Key="lang_SettingsSaved" xml:space="preserve">Settings Saved</s:String>
+
+    <s:String x:Key="lang_Appearance">
+        Appearance
+    </s:String>
+
+    <s:String x:Key="lang_TabWidth" xml:space="preserve">Tab Width</s:String>
+
+    <s:String x:Key="lang_AutoWidth" xml:space="preserve">Auto Width</s:String>
+
+    <s:String x:Key="lang_Background">
+        Background
+    </s:String>
+
+    <s:String x:Key="lang_ChooseBackground" xml:space="preserve">Choose Background Image</s:String>
+
+    <s:String x:Key="lang_EnableImage" xml:space="preserve">Enable Image</s:String>
+
+    <s:String x:Key="lang_UseDefaultImage" xml:space="preserve">Use Default Images</s:String>
+
+    <s:String x:Key="lang_SelectImage" xml:space="preserve">Select Image</s:String>
+
+    <s:String x:Key="lang_Theme">
+        Theme
+    </s:String>
+
+    <s:String x:Key="lang_ModifyThemes" xml:space="preserve">Modify Themes</s:String>
+
+    <s:String x:Key="lang_Light">
+        Light
+    </s:String>
+
+    <s:String x:Key="lang_Dark">
+        Dark
+    </s:String>
+
+    <s:String x:Key="lang_Language">
+        Language
+    </s:String>
+
+    <s:String x:Key="lang_Contest">
+        Contest
+    </s:String>
+
+    <s:String x:Key="lang_TimeLimit" xml:space="preserve">Time Limit (ms)</s:String>
+
+    <s:String x:Key="lang_MemoryLimit" xml:space="preserve">Memory Limit (MB)</s:String>
+
+    <s:String x:Key="lang_TestPointScore" xml:space="preserve">TestPoint Score</s:String>
+
+    <s:String x:Key="lang_CompilerCPP" xml:space="preserve">Compiler - C++</s:String>
+    <s:String x:Key="lang_EditCPP" xml:space="preserve">Edit - g++.exe</s:String>
+    
+    <s:String x:Key="lang_CompilerCSharp" xml:space="preserve">Compiler - C#</s:String>
+    <s:String x:Key="lang_EditCSharp" xml:space="preserve">Edit - csc.exe</s:String>
+    
+    <s:String x:Key="lang_CompilerJava" xml:space="preserve">Compiler - Java</s:String>
+    <s:String x:Key="lang_EditJavaCompiler" xml:space="preserve">Edit - javac.exe</s:String>
+    <s:String x:Key="lang_EditJavaInterpreter" xml:space="preserve">Browse - java.exe</s:String>
+
+    <s:String x:Key="lang_InterpreterPython" xml:space="preserve">Interpreter - Python</s:String>
+    <s:String x:Key="lang_EditPythonInterpreter" xml:space="preserve">Browse - python.exe</s:String>
+
+    <s:String x:Key="lang_SettingsReopenTip">
+        Reopen the application after select the image to free the meomory
+    </s:String>
+
+    <s:String x:Key="lang_SettingsThemeContrastHelp">
+        Contrast ratio and the dark mode
+    </s:String>
+
+    <s:String x:Key="lang_SettingsThemeContrastHelpDetail">
+        In the dark mode, depending on the preset contrast, the theme color will be different from the preset, and the bright mode will not be affected.\n
+		Set the contrast when setting the theme color.
+    </s:String>
+
+    <s:String x:Key="lang_SettingsReopenTipDetail">
+        The application uses BitmapImage to load pictures.\n
+		This will cause the memory occupied by the application to continue to rise (up to 1GB or higher) after continuous replacement or loading of different pictures.\n
+		At present, no effective method has been found to free memory.\n
+		Therefore, after changing the background picture, please save the settings and restart the program to free the memory.
+    </s:String>
+    
+    <!--HomePage-->
+    <s:String x:Key="lang_RecentContest" xml:space="preserve">Recent Contests</s:String>
+
+    <s:String x:Key="lang_NoRecentContest" xml:space="preserve">No Recent Contests</s:String>
+
+    <s:String x:Key="lang_Open">
+        Open
+    </s:String>
+
+    <s:String x:Key="lang_Delete">
+        Delete
+    </s:String>
+
+    <s:String x:Key="lang_Operations">
+        Operations
+    </s:String>
+
+    <s:String x:Key="lang_DragFolderHelp" xml:space="preserve">Drag file folder here to open it</s:String>
+
+    <s:String x:Key="lang_OpenCreateContest" xml:space="preserve">Open / Create Contest</s:String>
+
+    <s:String x:Key="lang_Settings">
+        Settings
+    </s:String>
+
+    <s:String x:Key="lang_OpenSource" xml:space="preserve">About &amp; Open Source Project</s:String>
+
+    <s:String x:Key="lang_DeleteSure" xml:space="preserve">Are you sure to remove all the items?</s:String>
+
+    <s:String x:Key="lang_SelectContestFolder" xml:space="preserve">Select Contest Folder</s:String>
+    
+    <!--ContestPage-->
+    <s:String x:Key="lang_Overview">
+        Overview
+    </s:String>
+
+    <!--OverviewPage - Contest-->
+    <s:String x:Key="lang_General">
+        General
+    </s:String>
+
+    <s:String x:Key="lang_Title">
+        Title
+    </s:String>
+
+    <s:String x:Key="lang_Time">
+        Time
+    </s:String>
+
+    <s:String x:Key="lang_Contestants">
+        Contestants
+    </s:String>
+
+    <s:String x:Key="lang_Description">
+        Description
+    </s:String>
+
+    <s:String x:Key="lang_Score">
+        Score
+    </s:String>
+
+    <s:String x:Key="lang_Reload">
+        Reload
+    </s:String>
+
+    <s:String x:Key="lang_OpenInExplorer" xml:space="preserve">Open In Explorer</s:String>
+
+    <s:String x:Key="lang_ContestFolderError" xml:space="preserve">Contest folder cannot be detected.</s:String>
+
+    <s:String x:Key="lang_ContestSaved" xml:space="preserve">Contest Saved</s:String>
+
+    <s:String x:Key="lang_JudgingTip" xml:space="preserve">Judging, please wait...</s:String>
+
+    <s:String x:Key="lang_ProblemRefreshed" xml:space="preserve">Problems refreshed.</s:String>
+
+    <s:String x:Key="lang_ContestantsRefreshed" xml:space="preserve">Contestants refreshed.</s:String>
+
+    <s:String x:Key="lang_ProblemsDeleted" xml:space="preserve">Problems deleted.</s:String>
+
+    <!--ProblemPage - Contest-->
+    <s:String x:Key="lang_Problems">
+        Problems
+    </s:String>
+
+    <s:String x:Key="lang_Edit">
+        Edit
+    </s:String>
+
+    <!--JudgePage - Contest-->
+    <s:String x:Key="lang_Judge">
+        Judge
+    </s:String>
+
+    <s:String x:Key="lang_NameAscending" xml:space="preserve">Name Ascending</s:String>
+    
+    <s:String x:Key="lang_NameDescending" xml:space="preserve">Name Descending</s:String>
+
+    <s:String x:Key="lang_PointsAscending" xml:space="preserve">Points Ascending</s:String>
+
+    <s:String x:Key="lang_PointsDescending" xml:space="preserve">Points Descending</s:String>
+
+    <s:String x:Key="lang_Charts">
+        Charts
+    </s:String>
+
+    <s:String x:Key="lang_Task">
+        Task
+    </s:String>
+
+    <!--ProblemPage-->
+    <s:String x:Key="lang_Points">
+        Points
+    </s:String>
+
+    <s:String x:Key="lang_Type">
+        Type
+    </s:String>
+
+    <s:String x:Key="lang_Divide">
+        Divide
+    </s:String>
+
+    <s:String x:Key="lang_Merge">
+        Merge
+    </s:String>
+
+    <s:String x:Key="lang_Sort">
+        Sort
+    </s:String>
+
+    <s:String x:Key="lang_ExtraCmd" xml:space="preserve">Extra Command</s:String>
+
+    <s:String x:Key="lang_TestPoints" xml:space="preserve">Test Points</s:String>
+
+    <s:String x:Key="lang_IOFiles" xml:space="preserve">In/Out Files</s:String>
+
+    <s:String x:Key="lang_ProblemPageAddHelp">
+        To add testpoints or problems:\n
+		1.Put all the input and output files into problem folder.\n
+		2.The problem folder should be under the folder &quot; data &quot; which is under the contest root folder, and named after the title of the problem.\n
+		3.Click the fresh button on the contest infomation page to load the added points.\n
+		4.In default case, each point has one I/O file pair.
+    </s:String>
+    
+    
+    <s:String x:Key="lang_ProblemPageAddPtsBtnMenuHeader">
+		Dragdrop files help
+	</s:String>
+
+
+	<s:String x:Key="lang_CheckPointBtnTip2">
+		Right Click: Clear all the pairs which have empty I/O files.
+	</s:String>
+    
+    
+    <!--JudgePage-->
+    <s:String x:Key="lang_EvalCompleted" xml:space="preserve">Evaluation completed</s:String>
+    
+    <!--AboutPage-->
+    <s:String x:Key="lang_AboutOpenSource" xml:space="preserve">About &amp; Open Source</s:String>
+
+    <s:String x:Key="lang_About">
+        About
+    </s:String>
+
+
+    <!--Abandoned-->
+    <!--AddPointPage-->
+    <s:String x:Key="lang_AddPointPageHelp">
+        == Operations ==\n
+		1.Drag file to this panel to add.\n
+		2.To delete single file pair: Click right mouse button on one file item in the list, and see the menu. \n
+		3.To delete all file pairs: Click button with icon "delete" below. \n
+		\n
+		== Data ==\n
+		1.Support input file extension: .in .txt\n
+		1.1.To be identified as input file, .txt file should have "in" in its name.\n
+		2.Support output file extension: .out .txt .ans\n
+		1.1.To be identified as output file, .txt file should have "out" in its name.\n
+		3.To make a pair, the in/out files must have the same name without extension.
+    </s:String>
+
+    <s:String x:Key="lang_CheckPointBtnTip1">
+        Left Click: Check all the pairs to see if files exist.
+    </s:String>
+</ResourceDictionary>

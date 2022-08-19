@@ -1,0 +1,476 @@
+﻿<local:PageViewBase x:Class="Contest_Killer.UserControls.SettingsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Contest_Killer.UserControls"
+             mc:Ignorable="d"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+			 xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
+			 xmlns:ut="clr-namespace:Contest_Killer.Utils"
+			 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:controls="clr-namespace:Contest_Killer.UserControls"
+             d:DesignHeight="720" d:DesignWidth="1080" Margin="5,10,5,0"
+             d:DataContext="{d:DesignInstance Type={x:Type vm:SettingsPageViewModel}}">
+    <local:PageViewBase.InputBindings>
+        <KeyBinding Gesture="Ctrl + S" Command="{Binding SaveSettingsCmd}"/>
+    </local:PageViewBase.InputBindings>
+    <Grid>
+        <controls:FluentScrollViewer Foreground="{DynamicResource MaterialDesignBody}">
+            <Grid Margin="0,0,0,30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="0,10,0,0">
+                    <TextBlock Text="{StaticResource lang_Appearance}"
+						   Margin="15,0,15,5"
+						   VerticalAlignment="Center"
+						   FontSize="24px" FontWeight="Bold"/>
+                    <Border BorderBrush="{DynamicResource MaterialDesignDivider}"
+							BorderThickness="0 0 0 3"
+							Margin="15,0,15,0"
+							VerticalAlignment="Bottom"/>
+                </Grid>
+
+                <Grid Grid.Row="1" Margin="20,20,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0"
+                                Orientation="Horizontal">
+                        <TextBlock Text="{StaticResource lang_TabWidth}"
+                                   FontWeight="Bold" FontSize="18px"
+                                   Margin="0,0,10,0"/>
+                        <CheckBox Style="{StaticResource MaterialDesignCheckBox}"
+                                  Content="{StaticResource lang_AutoWidth}" FontWeight="Medium"
+                                  IsChecked="{Binding CKSettings.IsAutoTabWidthSelected}"/>
+                    </StackPanel>
+                    <Slider Style="{StaticResource MaterialDesignDiscreteSlider}"
+                            Minimum="0" Maximum="600"
+                            Value="{Binding CKSettings.TabWidth, Mode=TwoWay, FallbackValue=72}"
+                            IsEnabled="{Binding CKSettings.TabWidthSliderEnabled}"
+                            Grid.Column="1"
+                            Margin="20,0,20,0"/>
+                </Grid>
+
+                <Grid Grid.Row="2" Margin="20,20,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0"
+                                Orientation="Horizontal">
+                        <TextBlock Text="{StaticResource lang_Background}"
+                                   VerticalAlignment="Center"
+                                   FontWeight="Bold" FontSize="18px"
+                                   Margin="0,0,10,0"/>
+                        <CheckBox Style="{StaticResource MaterialDesignCheckBox}"
+                                  Content="{StaticResource lang_EnableImage}" FontWeight="Medium"
+                                  IsChecked="{Binding CKSettings.IsImageEnabled}"
+                                  Margin="0,0,10,0"/>
+                        <CheckBox Style="{StaticResource MaterialDesignCheckBox}"
+                                  Content="{StaticResource lang_UseDefaultImage}" FontWeight="Medium"
+                                  IsChecked="{Binding CKSettings.IsUsingDefaultImage}"/>
+                    </StackPanel>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0"
+                                FontSize="16px"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                HorizontalAlignment="Left"
+                                Margin="20,0,20,0"
+                                Command="{Binding EditBackgroundCmd}"
+                                IsEnabled="{Binding CKSettings.IsImageEnabled}">
+                            <StackPanel Orientation="Horizontal">
+                                <md:PackIcon Kind="OpenInApp"
+                                             Width="20px" Height="20px"
+                                             Margin="0,0,10,0"
+                                             VerticalAlignment="Center"/>
+                                <TextBlock Text="{StaticResource lang_SelectImage}"
+                                           FontWeight="Medium"/>
+                            </StackPanel>
+                        </Button>
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding CKSettings.ImagePath}"
+                                   FontWeight="Medium" FontSize="16px"
+                                   VerticalAlignment="Center"
+                                   TextTrimming="CharacterEllipsis"
+                                   ToolTip="{Binding CKSettings.ImagePath}"/>
+                    </Grid>
+                </Grid>
+
+                <md:Chip Grid.Row="3" Margin="20,0,0,10"
+                         Icon="{md:PackIcon Kind=ExclamationThick}"
+                         FontWeight="Medium" Height="auto"
+                         Command="{Binding ShowTipCmd}"
+                         CommandParameter="{StaticResource lang_SettingsReopenTipDetail}">
+                    <md:Chip.Content>
+                        <TextBlock Text="{StaticResource lang_SettingsReopenTip}"
+                                   TextWrapping="Wrap" Margin="5"/>
+                    </md:Chip.Content>
+                </md:Chip>
+
+                <Grid Grid.Row="4" Margin="20,20,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+                        <TextBlock Text="{StaticResource lang_Theme}" Grid.Column="0"
+                                   FontWeight="Bold" FontSize="18px"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,10,0"/>
+                        <md:Chip Margin="20,0,0,0"
+                                 Icon="{md:PackIcon Kind=InformationOutline}"
+                                 FontWeight="Medium" Height="auto"
+                                 Command="{Binding ShowTipCmd}"
+                                 CommandParameter="{StaticResource lang_SettingsThemeContrastHelpDetail}">
+                                 <md:Chip.Content>
+                                     <TextBlock Text="{StaticResource lang_SettingsThemeContrastHelp}"
+                                                TextWrapping="Wrap" Margin="5"/>
+                                 </md:Chip.Content>
+                        </md:Chip>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Button Grid.Column="1"
+                                FontSize="16px"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                HorizontalAlignment="Left"
+                                Margin="20,0,20,0"
+                                Command="{Binding EditThemeCmd}">
+                            <StackPanel Orientation="Horizontal">
+                                <md:PackIcon Kind="Palette"
+                                             Margin="0,0,10,0"
+                                             Width="20px" Height="20px"
+                                             VerticalAlignment="Center"/>
+                                <TextBlock Text="{StaticResource lang_ModifyThemes}"
+                                           FontWeight="Medium"/>
+                            </StackPanel>
+                        </Button>
+                        <TextBlock Text="{StaticResource lang_Light}"
+                                   FontWeight="Medium" FontSize="12px"
+                                   VerticalAlignment="Center"
+                                   Margin="10,0,10,0"/>
+                        <ToggleButton IsChecked="{Binding CKSettings.IsDarkMode}"/>
+                        <TextBlock Text="{StaticResource lang_Dark}"
+                                   FontWeight="Medium" FontSize="12px"
+                                   VerticalAlignment="Center"
+                                   Margin="10,0,10,0"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="5" Margin="20,20,20,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               VerticalAlignment="Center"
+                               FontWeight="Bold" FontSize="18px"
+                               Margin="0,0,10,0">
+                        <Run Text="{StaticResource lang_Language}"/>
+                        <Run Text=" - "/>
+                        <Run Text="{StaticResource lang_RestartNeeded}"/>
+                    </TextBlock>
+                    <ListBox Grid.Column="1"
+                             Margin="20,0,10,0"
+                             FontSize="16px"
+                             Style="{StaticResource MaterialDesignNavigationPrimaryListBox}"
+                             ItemsSource="{Binding Languages}"
+                             SelectedItem="{Binding CKSettings.CurrentLanguage}"
+                             SelectionMode="Single">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </Grid>
+
+                <Grid Grid.Row="6" Margin="0,10,0,0">
+                    <TextBlock Text="{StaticResource lang_Contest}"
+						   Margin="15,0,15,5"
+						   VerticalAlignment="Center"
+						   FontSize="24px" FontWeight="Bold"/>
+                    <Border BorderBrush="{DynamicResource MaterialDesignDivider}"
+							BorderThickness="0 0 0 3"
+							Margin="15,0,15,0"
+							VerticalAlignment="Bottom"/>
+                </Grid>
+
+                <Grid Grid.Row="7" Margin="20,20,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{StaticResource lang_TimeLimit}"
+                               Grid.Column="0"
+                               FontWeight="Bold" FontSize="18px"
+                               VerticalAlignment="Center"
+                               Margin="0,0,10,0"/>
+                    <TextBox Grid.Column="1"
+                             Margin="20,0,10,0"
+                             Padding="10,5,10,5"
+                             FontSize="16px" FontFamily="{StaticResource MiSans}"
+                             Text="{Binding CKSettings.DefaultTimeLimit}"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             md:HintAssist.HelperText="{StaticResource lang_TimeLimit}"/>
+                </Grid>
+
+                <Grid Grid.Row="8" Margin="20,20,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{StaticResource lang_MemoryLimit}"
+                               Grid.Column="0"
+                               FontWeight="Bold" FontSize="18px"
+                               VerticalAlignment="Center"
+                               Margin="0,0,10,0"/>
+                    <TextBox Grid.Column="1"
+                             Margin="20,0,10,0"
+                             Padding="10,5,10,5"
+                             FontSize="16px" FontFamily="{StaticResource MiSans}"
+                             Text="{Binding CKSettings.DefaultMemoLimit}"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             md:HintAssist.HelperText="{StaticResource lang_MemoryLimit}"/>
+                </Grid>
+
+                <Grid Grid.Row="9" Margin="20,20,20,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{StaticResource lang_TestPointScore}"
+                               Grid.Column="0"
+                               FontWeight="Bold" FontSize="18px"
+                               VerticalAlignment="Center"
+                               Margin="0,0,10,0"/>
+                    <TextBox Grid.Column="1"
+                             Margin="20,0,10,0"
+                             Padding="10,5,10,5"
+                             FontSize="16px" FontFamily="{StaticResource MiSans}"
+                             Text="{Binding CKSettings.DefaultPointScore}"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             md:HintAssist.HelperText="{StaticResource lang_TestPointScore}"/>
+                </Grid>
+
+                <Grid Grid.Row="10" Margin="20,20,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{StaticResource lang_CompilerCPP}"
+                               Grid.Column="0"
+                               FontWeight="Bold" FontSize="18px"
+                               VerticalAlignment="Center"
+                               Margin="0,0,10,0"/>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0"
+                                FontSize="16px"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                HorizontalAlignment="Left"
+                                Margin="20,0,20,0"
+                                Command="{Binding EditCompilerCmd}"
+                                CommandParameter="0">
+                            <StackPanel Orientation="Horizontal">
+                                <md:PackIcon Kind="Edit"
+                                             Width="20px" Height="20px"
+                                             Margin="0,0,10,0"
+                                             VerticalAlignment="Center"/>
+                                <TextBlock Text="{StaticResource lang_EditCPP}"
+                                           FontWeight="Medium"/>
+                            </StackPanel>
+                        </Button>
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding CKSettings.CompilerCpp.AppPath}"
+                                   TextTrimming="CharacterEllipsis"
+                                   ToolTip="{Binding CKSettings.CompilerCpp.AppPath}"
+                                   FontWeight="Medium" FontSize="16px"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="11" Margin="20,20,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{StaticResource lang_CompilerCSharp}"
+                               Grid.Column="0"
+                               FontWeight="Bold" FontSize="18px"
+                               VerticalAlignment="Center"
+                               Margin="0,0,10,0"/>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0"
+                                FontSize="16px"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                HorizontalAlignment="Left"
+                                Margin="20,0,20,0"
+                                Command="{Binding EditCompilerCmd}"
+                                CommandParameter="1">
+                            <StackPanel Orientation="Horizontal">
+                                <md:PackIcon Kind="Edit"
+                                             Width="20px" Height="20px"
+                                             Margin="0,0,10,0"
+                                             VerticalAlignment="Center"/>
+                                <TextBlock Text="{StaticResource lang_EditCSharp}"
+                                       FontWeight="Medium"/>
+                            </StackPanel>
+                        </Button>
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding CKSettings.CompilerCSharp.AppPath}"
+                                   TextTrimming="CharacterEllipsis"
+                                   ToolTip="{Binding CKSettings.CompilerCSharp.AppPath}"
+                                   FontWeight="Medium" FontSize="16px"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="12" Margin="20,20,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{StaticResource lang_CompilerJava}"
+                               Grid.Column="0"
+                               FontWeight="Bold" FontSize="18px"
+                               VerticalAlignment="Center"
+                               Margin="0,0,10,0"/>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Grid.Row="0"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                HorizontalAlignment="Left"
+                                Margin="20,0,20,0"
+                                FontSize="16px"
+                                Command="{Binding EditCompilerCmd}"
+                                CommandParameter="2">
+                            <StackPanel Orientation="Horizontal">
+                                <md:PackIcon Kind="Edit"
+                                             Width="20px" Height="20px"
+                                             Margin="0,0,10,0"
+                                             VerticalAlignment="Center"/>
+                                <TextBlock Text="{StaticResource lang_EditJavaCompiler}"
+                                           FontWeight="Medium"/>
+                            </StackPanel>
+                        </Button>
+
+                        <TextBlock Grid.Column="1" Grid.Row="0"
+                                   Text="{Binding CKSettings.CompilerJava.AppPath}"
+                                   TextTrimming="CharacterEllipsis"
+                                   ToolTip="{Binding CKSettings.CompilerJava.AppPath}"
+                                   FontWeight="Medium" FontSize="16px"
+                                   VerticalAlignment="Center"/>
+
+                        <Button Grid.Column="0" Grid.Row="1"
+                                FontSize="16px"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                HorizontalAlignment="Left"
+                                Margin="20,10,20,0"
+                                Command="{Binding EditCompilerCmd}"
+                                CommandParameter="-1">
+                            <StackPanel Orientation="Horizontal">
+                                <md:PackIcon Kind="OpenInBrowser"
+                                             Margin="0,0,10,0"
+                                             Width="20px" Height="20px"
+                                             VerticalAlignment="Center"/>
+                                <TextBlock Text="{StaticResource lang_EditJavaInterpreter}"
+                                           FontWeight="Medium"/>
+                            </StackPanel>
+                        </Button>
+
+                        <TextBlock Grid.Column="1" Grid.Row="1"
+                                   Text="{Binding CKSettings.JavaPath}"
+                                   TextTrimming="CharacterEllipsis"
+                                   Margin="0,10,0,0"
+                                   ToolTip="{Binding CKSettings.JavaPath}"
+                                   FontWeight="Medium" FontSize="16px"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="13" Margin="20,20,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{StaticResource lang_InterpreterPython}"
+                               Grid.Column="0"
+                               FontWeight="Bold" FontSize="18px"
+                               VerticalAlignment="Center"
+                               Margin="0,0,10,0"/>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0"
+                                FontSize="16px"
+                                Style="{StaticResource MaterialDesignFlatButton}"
+                                HorizontalAlignment="Left"
+                                Margin="20,0,20,0"
+                                Command="{Binding EditCompilerCmd}"
+                                CommandParameter="-2">
+                            <StackPanel Orientation="Horizontal">
+                                <md:PackIcon Kind="OpenInBrowser"
+                                             Width="20px" Height="20px"
+                                             Margin="0,0,10,0"
+                                             VerticalAlignment="Center"/>
+                                <TextBlock Text="{StaticResource lang_EditPythonInterpreter}"
+                                           FontWeight="Medium"/>
+                            </StackPanel>
+                        </Button>
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding CKSettings.PythonPath}"
+                                   TextTrimming="CharacterEllipsis"
+                                   ToolTip="{Binding CKSettings.PythonPath}"
+                                   FontWeight="Medium" FontSize="16px"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </controls:FluentScrollViewer>
+        <md:Snackbar VerticalAlignment="Bottom"
+					 FontFamily="{StaticResource MiSans}"
+					 HorizontalAlignment="Center"
+					 MessageQueue="{Binding BarMessageQueue}"/>
+    </Grid>
+</local:PageViewBase>
