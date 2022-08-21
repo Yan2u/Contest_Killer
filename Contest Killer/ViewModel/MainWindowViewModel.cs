@@ -66,8 +66,7 @@ namespace Contest_Killer.ViewModel
             }
             if (!OpenNewContest(item.Location, item))
             {
-                Utils.MessageBox.Show(System.Windows.Application.Current.Resources["lang_Error"] as string, System.Windows.Application.Current.Resources["lang_ContestFolderError"] as string, this, null, true);
-                homePageVM.RecentContests.Remove(item);
+                Utils.MessageBox.Show(System.Windows.Application.Current.Resources["lang_Error"] as string, System.Windows.Application.Current.Resources["lang_ContestFolderError"] as string, MainWindowVM, null, true);
             }
         }
 
