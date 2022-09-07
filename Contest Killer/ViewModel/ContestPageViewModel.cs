@@ -977,6 +977,13 @@ namespace Contest_Killer.ViewModel
             }
         });
 
+        public RelayCommand<bool> ChangePageCmd => new RelayCommand<bool>((bool forward) =>
+        {
+            if (judgeTab == null) return;
+            if (forward) judgeTab.SelectedIndex = Math.Max(judgeTab.SelectedIndex - 1, 0);
+            else judgeTab.SelectedIndex = Math.Min(judgeTab.SelectedIndex + 1, judgeTab.Items.Count - 1);
+        });
+
         public ContestPageViewModel(Contest ct)
         {
             ContestData = ct;
