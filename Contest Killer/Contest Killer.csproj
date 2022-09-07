@@ -327,15 +327,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Resource Include="Resources\MiSans-Bold.ttf" />
-    <Resource Include="Resources\MiSans-Demibold.ttf" />
-    <Resource Include="Resources\MiSans-ExtraLight.ttf" />
-    <Resource Include="Resources\MiSans-Heavy.ttf" />
-    <Resource Include="Resources\MiSans-Light.ttf" />
     <Resource Include="Resources\MiSans-Medium.ttf" />
     <Resource Include="Resources\MiSans-Normal.ttf" />
     <Resource Include="Resources\MiSans-Regular.ttf" />
     <Resource Include="Resources\MiSans-Semibold.ttf" />
-    <Resource Include="Resources\MiSans-Thin.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
