@@ -154,23 +154,8 @@
 			<FontFamily x:Key="MiSans">/Resources/MiSans-Medium.ttf#MiSans</FontFamily>
 			<Style TargetType="{x:Type TextElement}">
 				<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-				<Style.Triggers>
-					<Trigger Property="FontWeight" Value="Thin">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-Thin.ttf#MiSans Thin"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="ExtraLight">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-ExtraLight.ttf#MiSans Extralight"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="Light">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-Light.ttf#MiSans Light"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="Normal">
+                <Style.Triggers>
+                    <Trigger Property="FontWeight" Value="Normal">
 						<Trigger.Setters>
 							<Setter Property="FontFamily" Value="/Resources/MiSans-Normal.ttf#MiSans Normal"/>
 						</Trigger.Setters>
@@ -185,47 +170,22 @@
 							<Setter Property="FontFamily" Value="/Resources/MiSans-Regular.ttf#MiSans"/>
 						</Trigger.Setters>
 					</Trigger>
-					<Trigger Property="FontWeight" Value="SemiBold">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-SemiBold.ttf#MiSans SemiBold"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="DemiBold">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-DemiBold.ttf#MiSans Demibold"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="Bold">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-Bold.ttf#MiSans"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="Heavy">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-Heavy.ttf#MiSans Heavy"/>
-						</Trigger.Setters>
-					</Trigger>
-				</Style.Triggers>
+                    <Trigger Property="FontWeight" Value="SemiBold">
+                        <Trigger.Setters>
+                            <Setter Property="FontFamily" Value="/Resources/MiSans-SemiBold.ttf#MiSans SemiBold"/>
+                        </Trigger.Setters>
+                    </Trigger>
+                    <Trigger Property="FontWeight" Value="Bold">
+                        <Trigger.Setters>
+                            <Setter Property="FontFamily" Value="/Resources/MiSans-Bold.ttf#MiSans"/>
+                        </Trigger.Setters>
+                    </Trigger>
+                </Style.Triggers>
 			</Style>
 
 			<Style TargetType="{x:Type TextBlock}">
-				<Style.Triggers>
-					<Trigger Property="FontWeight" Value="Thin">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-Thin.ttf#MiSans Thin"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="ExtraLight">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-ExtraLight.ttf#MiSans Extralight"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="Light">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-Light.ttf#MiSans Light"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="Normal">
+                <Style.Triggers>
+                    <Trigger Property="FontWeight" Value="Normal">
 						<Trigger.Setters>
 							<Setter Property="FontFamily" Value="/Resources/MiSans-Normal.ttf#MiSans Normal"/>
 						</Trigger.Setters>
@@ -240,27 +200,17 @@
 							<Setter Property="FontFamily" Value="/Resources/MiSans-Regular.ttf#MiSans"/>
 						</Trigger.Setters>
 					</Trigger>
-					<Trigger Property="FontWeight" Value="SemiBold">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-SemiBold.ttf#MiSans SemiBold"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="DemiBold">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-DemiBold.ttf#MiSans Demibold"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="Bold">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-Bold.ttf#MiSans"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="Heavy">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-Heavy.ttf#MiSans Heavy"/>
-						</Trigger.Setters>
-					</Trigger>
-				</Style.Triggers>
+                    <Trigger Property="FontWeight" Value="SemiBold">
+                        <Trigger.Setters>
+                            <Setter Property="FontFamily" Value="/Resources/MiSans-SemiBold.ttf#MiSans SemiBold"/>
+                        </Trigger.Setters>
+                    </Trigger>
+                    <Trigger Property="FontWeight" Value="Bold">
+                        <Trigger.Setters>
+                            <Setter Property="FontFamily" Value="/Resources/MiSans-Bold.ttf#MiSans"/>
+                        </Trigger.Setters>
+                    </Trigger>
+                </Style.Triggers>
 			</Style>
 			
 			<!--Global - Var -->
