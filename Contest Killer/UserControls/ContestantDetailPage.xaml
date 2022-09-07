@@ -31,7 +31,7 @@
 					   Grid.Column="0"
 					   Margin="15,5,0,3"
 					   VerticalAlignment="Center"
-					   FontSize="32px" FontWeight="Black"/>
+					   FontSize="32px" FontWeight="Bold"/>
                 <TextBlock Text="pts"
 					   Grid.Column="0"
 					   Margin="10,5,15,5"

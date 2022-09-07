@@ -90,8 +90,8 @@
 				</Button>
 			</Grid>
             <TabControl Grid.Row="1"
-                        HorizontalContentAlignment="Left"
                         Style="{StaticResource MaterialDesignFilledTabControl}"
+                        HorizontalContentAlignment="Stretch"
 					    FontFamily="{StaticResource MiSans}"
                         Margin="20,10,25,0">
                 <i:Interaction.Triggers>
@@ -101,7 +101,8 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <TabItem Width="auto" Height="auto"
-                         Padding="10" Header="{StaticResource lang_Charts}">
+                         Padding="10" Header="{StaticResource lang_Charts}"
+                         >
                     <Grid DataContext="{Binding}" Margin="0,10,0,0">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
