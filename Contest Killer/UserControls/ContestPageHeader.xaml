@@ -18,11 +18,13 @@
 			<ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
 			<ColumnDefinition Width="auto"/>
-			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 		<Button WindowChrome.IsHitTestVisibleInChrome="True"
 				VerticalAlignment="Center"
 				Style="{StaticResource MaterialDesignIconButton}"
+                Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
 				Grid.Column="0" Margin="20,0,0,0" ToolTip="{StaticResource lang_Close}"
 				Command="{Binding CloseContestCmd}">
 			<md:PackIcon Kind="Close"/>
@@ -30,6 +32,7 @@
 		<Button WindowChrome.IsHitTestVisibleInChrome="True"
 				VerticalAlignment="Center"
 				Style="{StaticResource MaterialDesignIconButton}"
+                Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
 				Grid.Column="1" ToolTip="{StaticResource lang_BackHome}"
 				Command="{Binding HomeCmd}">
 			<md:PackIcon Kind="ArrowLeft"/>
@@ -37,6 +40,7 @@
 		<Button WindowChrome.IsHitTestVisibleInChrome="True"
 				VerticalAlignment="Center"
 				Style="{StaticResource MaterialDesignIconButton}"
+                Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
 				Grid.Column="2" Margin="0,0,10,0" ToolTip="{StaticResource lang_Save}"
 				Command="{Binding SaveContestCmd}">
 			<md:PackIcon Kind="ContentSave"/>
@@ -45,16 +49,63 @@
         <Button WindowChrome.IsHitTestVisibleInChrome="True"
 				VerticalAlignment="Center"
 				Style="{StaticResource MaterialDesignIconButton}"
+                Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
 				Grid.Column="3" Margin="0,0,10,0" ToolTip="{StaticResource lang_Export}"
 				Command="{Binding ExportContestCmd}">
             <md:PackIcon Kind="FileExport"/>
         </Button>
         
-        <TextBlock Grid.Column="4"
+        <TextBlock Grid.Column="4" Margin="10,0,10,0"
 				   VerticalAlignment="Center"
-				   HorizontalAlignment="Center"
 				   FontSize="20px" FontWeight="Bold"
-				   Foreground="{DynamicResource MaterialDesignBody}"
+				   Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
 				   Text="{Binding ContestData.Title}"/>
+
+        <StackPanel Grid.Column="5" Margin="10,0,10,0"
+                    Orientation="Horizontal"
+                    WindowChrome.IsHitTestVisibleInChrome="True">
+            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                    Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}, Path=ActualHeight}"
+                    Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                    Padding="20,0,20,0"
+                    Command="{Binding SwitchPageCmd}"
+                    CommandParameter="0">
+                <StackPanel Width="auto" Height="auto">
+                    <md:PackIcon Kind="ViewDashboard"
+										 HorizontalAlignment="Center"
+										 Height="20px" Width="20px"/>
+                    <TextBlock Text="{StaticResource lang_Overview}"
+									   HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                    Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}, Path=ActualHeight}"
+                    Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                    Padding="20,0,20,0"
+                    Command="{Binding SwitchPageCmd}"
+                    CommandParameter="1">
+                <StackPanel Width="auto" Height="auto">
+                    <md:PackIcon Kind="HeadQuestion"
+										 HorizontalAlignment="Center"
+										 Height="20px" Width="20px"/>
+                    <TextBlock Text="{StaticResource lang_Problems}"
+									   HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                    Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}, Path=ActualHeight}"
+                    Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+                    Padding="20,0,20,0"
+                    Command="{Binding SwitchPageCmd}"
+                    CommandParameter="2">
+                <StackPanel Width="auto" Height="auto">
+                    <md:PackIcon Kind="CheckboxMultipleMarked"
+										 HorizontalAlignment="Center"
+										 Height="20px" Width="20px"/>
+                    <TextBlock Text="{StaticResource lang_Judge}"
+									   HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
 	</Grid>
 </local:PageViewBase>

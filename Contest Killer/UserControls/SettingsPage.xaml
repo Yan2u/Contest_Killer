@@ -9,6 +9,7 @@
 			 xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
 			 xmlns:ut="clr-namespace:Contest_Killer.Utils"
 			 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:controls="clr-namespace:Contest_Killer.UserControls"
              d:DesignHeight="720" d:DesignWidth="1080" Margin="5,10,5,0"
              d:DataContext="{d:DesignInstance Type={x:Type vm:SettingsPageViewModel}}">
@@ -16,8 +17,15 @@
         <KeyBinding Gesture="Ctrl + S" Command="{Binding SaveSettingsCmd}"/>
     </local:PageViewBase.InputBindings>
     <Grid>
-        <controls:FluentScrollViewer Foreground="{DynamicResource MaterialDesignBody}">
-            <Grid Margin="0,0,0,30">
+        <ScrollViewer Foreground="{DynamicResource MaterialDesignBody}">
+            <Grid Margin="0,10,0,30">
+                <b:Interaction.Behaviors>
+                    <b:FluidMoveBehavior Duration="0:0:0.3">
+                        <b:FluidMoveBehavior.EaseY>
+                            <CircleEase EasingMode="EaseOut"/>
+                        </b:FluidMoveBehavior.EaseY>
+                    </b:FluidMoveBehavior>
+                </b:Interaction.Behaviors>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -71,67 +79,7 @@
                             Margin="20,0,20,0"/>
                 </Grid>
 
-                <Grid Grid.Row="2" Margin="20,20,20,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0"
-                                Orientation="Horizontal">
-                        <TextBlock Text="{StaticResource lang_Background}"
-                                   VerticalAlignment="Center"
-                                   FontWeight="Bold" FontSize="18px"
-                                   Margin="0,0,10,0"/>
-                        <CheckBox Style="{StaticResource MaterialDesignCheckBox}"
-                                  Content="{StaticResource lang_EnableImage}" FontWeight="Medium"
-                                  IsChecked="{Binding CKSettings.IsImageEnabled}"
-                                  Margin="0,0,10,0"/>
-                        <CheckBox Style="{StaticResource MaterialDesignCheckBox}"
-                                  Content="{StaticResource lang_UseDefaultImage}" FontWeight="Medium"
-                                  IsChecked="{Binding CKSettings.IsUsingDefaultImage}"/>
-                    </StackPanel>
-                    <Grid Grid.Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0"
-                                FontSize="16px"
-                                Style="{StaticResource MaterialDesignFlatButton}"
-                                HorizontalAlignment="Left"
-                                Margin="20,0,20,0"
-                                Command="{Binding EditBackgroundCmd}"
-                                IsEnabled="{Binding CKSettings.IsImageEnabled}">
-                            <StackPanel Orientation="Horizontal">
-                                <md:PackIcon Kind="OpenInApp"
-                                             Width="20px" Height="20px"
-                                             Margin="0,0,10,0"
-                                             VerticalAlignment="Center"/>
-                                <TextBlock Text="{StaticResource lang_SelectImage}"
-                                           FontWeight="Medium"/>
-                            </StackPanel>
-                        </Button>
-                        <TextBlock Grid.Column="1"
-                                   Text="{Binding CKSettings.ImagePath}"
-                                   FontWeight="Medium" FontSize="16px"
-                                   VerticalAlignment="Center"
-                                   TextTrimming="CharacterEllipsis"
-                                   ToolTip="{Binding CKSettings.ImagePath}"/>
-                    </Grid>
-                </Grid>
-
-                <md:Chip Grid.Row="3" Margin="20,0,0,10"
-                         Icon="{md:PackIcon Kind=ExclamationThick}"
-                         FontWeight="Medium" Height="auto"
-                         Command="{Binding ShowTipCmd}"
-                         CommandParameter="{StaticResource lang_SettingsReopenTipDetail}">
-                    <md:Chip.Content>
-                        <TextBlock Text="{StaticResource lang_SettingsReopenTip}"
-                                   TextWrapping="Wrap" Margin="5"/>
-                    </md:Chip.Content>
-                </md:Chip>
-
-                <Grid Grid.Row="4" Margin="20,20,20,0">
+                <Grid Grid.Row="3" Margin="20,20,20,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -180,7 +128,7 @@
                     </StackPanel>
                 </Grid>
 
-                <Grid Grid.Row="5" Margin="20,20,20,10">
+                <Grid Grid.Row="4" Margin="20,20,20,10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -208,7 +156,7 @@
                     </ListBox>
                 </Grid>
 
-                <Grid Grid.Row="6" Margin="0,10,0,0">
+                <Grid Grid.Row="5" Margin="0,10,0,0">
                     <TextBlock Text="{StaticResource lang_Contest}"
 						   Margin="15,0,15,5"
 						   VerticalAlignment="Center"
@@ -219,7 +167,7 @@
 							VerticalAlignment="Bottom"/>
                 </Grid>
 
-                <Grid Grid.Row="7" Margin="20,20,20,0">
+                <Grid Grid.Row="6" Margin="20,20,20,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -238,7 +186,7 @@
                              md:HintAssist.HelperText="{StaticResource lang_TimeLimit}"/>
                 </Grid>
 
-                <Grid Grid.Row="8" Margin="20,20,20,0">
+                <Grid Grid.Row="7" Margin="20,20,20,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -257,7 +205,7 @@
                              md:HintAssist.HelperText="{StaticResource lang_MemoryLimit}"/>
                 </Grid>
 
-                <Grid Grid.Row="9" Margin="20,20,20,10">
+                <Grid Grid.Row="8" Margin="20,20,20,10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -276,7 +224,7 @@
                              md:HintAssist.HelperText="{StaticResource lang_TestPointScore}"/>
                 </Grid>
 
-                <Grid Grid.Row="10" Margin="20,20,20,0">
+                <Grid Grid.Row="9" Margin="20,20,20,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -316,7 +264,7 @@
                     </Grid>
                 </Grid>
 
-                <Grid Grid.Row="11" Margin="20,20,20,0">
+                <Grid Grid.Row="10" Margin="20,20,20,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -356,7 +304,7 @@
                     </Grid>
                 </Grid>
 
-                <Grid Grid.Row="12" Margin="20,20,20,0">
+                <Grid Grid.Row="11" Margin="20,20,20,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -427,7 +375,7 @@
                     </Grid>
                 </Grid>
 
-                <Grid Grid.Row="13" Margin="20,20,20,0">
+                <Grid Grid.Row="12" Margin="20,20,20,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -467,7 +415,7 @@
                     </Grid>
                 </Grid>
             </Grid>
-        </controls:FluentScrollViewer>
+        </ScrollViewer>
         <md:Snackbar VerticalAlignment="Bottom"
 					 FontFamily="{StaticResource MiSans}"
 					 HorizontalAlignment="Center"

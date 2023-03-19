@@ -9,12 +9,20 @@
 			 xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
 			 xmlns:ut="clr-namespace:Contest_Killer.Utils"
 			 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:controls="clr-namespace:Contest_Killer.UserControls"
-			 d:DataContext="{d:DesignInstance Type=vm:ContestPageViewModel}"
+			 d:DataContext="{d:DesignInstance Type=vm:ContestProblemPageViewModel}"
 			 d:DesignHeight="450" d:DesignWidth="800">
-	<controls:FluentScrollViewer>
+	<ScrollViewer>
 		<Grid>
-			<Grid.RowDefinitions>
+            <b:Interaction.Behaviors>
+                <b:FluidMoveBehavior Duration="0:0:0.3">
+                    <b:FluidMoveBehavior.EaseY>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </b:FluidMoveBehavior.EaseY>
+                </b:FluidMoveBehavior>
+            </b:Interaction.Behaviors>
+            <Grid.RowDefinitions>
 				<RowDefinition Height="auto"/>
 				<RowDefinition Height="auto"/>
 			</Grid.RowDefinitions>
@@ -26,6 +34,7 @@
 					<ColumnDefinition Width="auto"/>
 				</Grid.ColumnDefinitions>
 				<TextBlock Text="{StaticResource lang_Problems}"
+                           Foreground="{DynamicResource MaterialDesignBody}"
 						   Grid.Column="0"
 						   Margin="15,5,15,0"
 						   VerticalAlignment="Center"
@@ -73,7 +82,7 @@
 			<ListBox Margin="25,10,25,0"
 					 Grid.Row="1"
 					 Style="{StaticResource MaterialDesignNavigationPrimaryListBox}"
-					 ItemsSource="{Binding ContestData.Problems}"
+					 ItemsSource="{Binding RootVM.ContestData.Problems}"
 					 SelectionChanged="PageSelectionChanged"
 					 PreviewMouseWheel="PagePreviewMouseWheel"
 					 ItemTemplate="{StaticResource ProblemListTemplate}"
@@ -100,5 +109,5 @@
 				</ListBox.ContextMenu>
 			</ListBox>
 		</Grid>
-	</controls:FluentScrollViewer>
+	</ScrollViewer>
 </local:PageViewBase>

@@ -33,7 +33,7 @@
                         Content="{md:PackIcon Kind=Close}"
                         Command="{x:Static md:DialogHost.CloseDialogCommand}"/>
             </Grid>
-            <Grid Grid.Row="1" Margin="15,0,15,0" TextBlock.TextAlignment="Center">
+            <Grid Grid.Row="1" Margin="15,0,15,0" TextBlock.TextAlignment="Left">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -45,7 +45,7 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>

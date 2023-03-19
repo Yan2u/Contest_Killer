@@ -21,6 +21,7 @@
         <Button WindowChrome.IsHitTestVisibleInChrome="True"
 				VerticalAlignment="Center"
 				Style="{StaticResource MaterialDesignIconButton}"
+                Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
 				Grid.Column="0" Margin="20,0,0,0" ToolTip="{StaticResource lang_Close}"
 				Command="{Binding CloseCmd}">
             <md:PackIcon Kind="Close"/>
@@ -28,6 +29,7 @@
         <Button WindowChrome.IsHitTestVisibleInChrome="True"
 				VerticalAlignment="Center"
 				Style="{StaticResource MaterialDesignIconButton}"
+                Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
 				Grid.Column="1" Margin="0,0,10,0" ToolTip="{StaticResource lang_Save}"
 				Command="{Binding SaveSettingsCmd}">
             <md:PackIcon Kind="ContentSave"/>
@@ -36,7 +38,7 @@
 				   VerticalAlignment="Center"
 				   HorizontalAlignment="Center"
 				   FontSize="20px" FontWeight="Bold"
-				   Foreground="{DynamicResource MaterialDesignBody}"
+				   Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
 				   Text="{StaticResource lang_Settings}"/>
     </Grid>
 </UserControl>

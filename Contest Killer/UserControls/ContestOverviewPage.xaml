@@ -9,12 +9,20 @@
 			 xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
 			 xmlns:ut="clr-namespace:Contest_Killer.Utils"
 			 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:controls="clr-namespace:Contest_Killer.UserControls"
 			 d:DesignHeight="450" d:DesignWidth="800"
-			 d:DataContext="{d:DesignInstance Type=vm:ContestPageViewModel}">
-	<controls:FluentScrollViewer>
+			 d:DataContext="{d:DesignInstance Type=vm:ContestOverviewPageViewModel}">
+	<ScrollViewer>
 		<Grid>
-			<Grid.RowDefinitions>
+            <b:Interaction.Behaviors>
+                <b:FluidMoveBehavior Duration="0:0:0.3">
+                    <b:FluidMoveBehavior.EaseY>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </b:FluidMoveBehavior.EaseY>
+                </b:FluidMoveBehavior>
+            </b:Interaction.Behaviors>
+            <Grid.RowDefinitions>
 				<RowDefinition Height="auto"/>
 				<RowDefinition Height="auto"/>
 				<RowDefinition Height="auto"/>
@@ -27,6 +35,7 @@
 					<ColumnDefinition Width="auto"/>
 				</Grid.ColumnDefinitions>
 				<TextBlock Text="{StaticResource lang_General}"
+                           Foreground="{DynamicResource MaterialDesignBody}"
 						   Grid.Column="0"
 						   Margin="15,5,15,0"
 						   VerticalAlignment="Center"
@@ -65,39 +74,49 @@
 					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
 				<TextBlock Text="{StaticResource lang_Title}" Margin="0,0,0,10"
+                           Foreground="{DynamicResource MaterialDesignBody}"
 						   FontSize="20px" FontWeight="Bold"
 						   Grid.Row="0" Grid.Column="0"
 						   VerticalAlignment="Center"/>
-				<TextBlock Text="{Binding ContestData.Title}" Margin="30,0,10,0"
+				<TextBlock Text="{Binding RootVM.ContestData.Title}" Margin="30,0,10,0"
+                           Foreground="{DynamicResource MaterialDesignBody}"
 						   Visibility="{Binding ShowVisibility, FallbackValue=Visible}"
 						   FontSize="20px" FontWeight="Medium"
 						   Grid.Row="0" Grid.Column="1"/>
-				<TextBox Text="{Binding ContestData.Title, Mode=TwoWay}" Margin="30,0,10,10"
+				<TextBox Text="{Binding RootVM.ContestData.Title, Mode=TwoWay}" Margin="30,0,10,10"
+                         Foreground="{DynamicResource MaterialDesignBody}"
 						 Visibility="{Binding EditVisibility, FallbackValue=Collapsed}"
 						 FontSize="20px" FontWeight="Medium" FontFamily="{StaticResource MiSans}"
 						 Grid.Row="0" Grid.Column="1"/>
 				<TextBlock Text="{StaticResource lang_Description}" Margin="0,0,0,10"
+                           Foreground="{DynamicResource MaterialDesignBody}"
 						   FontSize="20px" FontWeight="Bold"
 						   Grid.Row="1" Grid.Column="0"
 						   VerticalAlignment="Center"/>
-				<TextBlock Text="{Binding ContestData.Description}" Margin="30,0,10,0"
+				<TextBlock Text="{Binding RootVM.ContestData.Description}" Margin="30,0,10,0"
+                           Foreground="{DynamicResource MaterialDesignBody}"
 						   Visibility="{Binding ShowVisibility, FallbackValue=Visible}"
 						   FontSize="20px" FontWeight="Medium"
 						   Grid.Row="1" Grid.Column="1"/>
-				<TextBox Text="{Binding ContestData.Description, Mode=TwoWay}" Margin="30,0,10,10"
+				<TextBox Text="{Binding RootVM.ContestData.Description, Mode=TwoWay}" Margin="30,0,10,10"
+                         Foreground="{DynamicResource MaterialDesignBody}"
 						 Visibility="{Binding EditVisibility, FallbackValue=Collapsed}"
 						 FontSize="20px" FontWeight="Medium" FontFamily="{StaticResource MiSans}"
 						 Grid.Row="1" Grid.Column="1" AcceptsReturn="True"/>
 				<TextBlock Text="{StaticResource lang_Time}" Margin="0,0,0,10"
+                           Foreground="{DynamicResource MaterialDesignBody}"
 						   FontSize="20px" FontWeight="Bold"
 						   Grid.Row="2" Grid.Column="0"/>
-				<TextBlock Text="{Binding ContestData.CreateTime, StringFormat={}{0:yyyy-MM-dd HH:mm}}" Margin="30,0,10,0"
+				<TextBlock Text="{Binding RootVM.ContestData.CreateTime, StringFormat={}{0:yyyy-MM-dd HH:mm}}" 
+                           Margin="30,0,10,0" Foreground="{DynamicResource MaterialDesignBody}"
 						   FontSize="20px" FontWeight="Medium"
 						   Grid.Row="2" Grid.Column="1"/>
 				<TextBlock Text="{StaticResource lang_Contestants}" Margin="0,0,0,10"
+                           Foreground="{DynamicResource MaterialDesignBody}"
 						   FontSize="20px" FontWeight="Bold"
 						   Grid.Row="3" Grid.Column="0"/>
-				<TextBlock Text="{Binding ContestData.Contestants.Count}" Margin="30,0,10,0"
+				<TextBlock Text="{Binding RootVM.ContestData.Contestants.Count}" Margin="30,0,10,0"
+                           Foreground="{DynamicResource MaterialDesignBody}"
 						   FontSize="20px" FontWeight="Medium"
 						   Grid.Row="3" Grid.Column="1"/>
 			</Grid>
@@ -109,6 +128,7 @@
 					<ColumnDefinition Width="auto"/>
 				</Grid.ColumnDefinitions>
                 <TextBlock Text="{StaticResource lang_Score}"
+                           Foreground="{DynamicResource MaterialDesignBody}"
 						   Grid.Column="0"
 						   Margin="15,5,15,0"
 						   VerticalAlignment="Center"
@@ -141,7 +161,7 @@
 			<ListBox PreviewMouseWheel="PagePreviewMouseWheel"
 					 Margin="10"
 					 Grid.Row="3"
-					 ItemsSource="{Binding ContestData.Contestants}"
+					 ItemsSource="{Binding RootVM.ContestData.Contestants}"
 					 ItemContainerStyle="{StaticResource OverviewScoreItem}"
 					 ItemTemplate="{StaticResource ContestantsOverviewListTemplate}">
 				<i:Interaction.Triggers>
@@ -152,5 +172,5 @@
 				</i:Interaction.Triggers>
 			</ListBox>
 		</Grid>
-	</controls:FluentScrollViewer>
+	</ScrollViewer>
 </local:PageViewBase>

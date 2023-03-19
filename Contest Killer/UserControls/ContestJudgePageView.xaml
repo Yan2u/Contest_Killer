@@ -9,100 +9,112 @@
 			 xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
 			 xmlns:ut="clr-namespace:Contest_Killer.Utils"
 			 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+			 xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:page="clr-namespace:Contest_Killer.UserControls"
-			 d:DataContext="{d:DesignInstance Type=vm:ContestPageViewModel}"
+			 d:DataContext="{d:DesignInstance Type=vm:ContestJudgePageViewModel}"
 			 d:DesignHeight="450" d:DesignWidth="800">
-	<ScrollViewer VerticalScrollBarVisibility="Disabled">
-		<Grid>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="auto"/>
-				<RowDefinition Height="*"/>
-			</Grid.RowDefinitions>
-			<Grid Margin="0,10,0,0" Grid.Row="0">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="auto"/>
-					<ColumnDefinition Width="auto"/>
-					<ColumnDefinition Width="auto"/>
-				</Grid.ColumnDefinitions>
-				<TextBlock Text="{StaticResource lang_Judge}"
-						   Grid.Column="0"
-						   Margin="15,5,15,0"
-						   VerticalAlignment="Center"
-						   FontSize="26px" FontWeight="Bold"/>
-				<Border BorderBrush="{DynamicResource MaterialDesignDivider}"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="0,10,0,0" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{StaticResource lang_Judge}"
+                       Foreground="{DynamicResource MaterialDesignBody}"
+					   Grid.Column="0"
+					   Margin="15,5,15,0"
+					   VerticalAlignment="Center"
+					   FontSize="26px" FontWeight="Bold"/>
+            <Border BorderBrush="{DynamicResource MaterialDesignDivider}"
 						Grid.Column="0"
 						BorderThickness="0 0 0 3"
 						VerticalAlignment="Bottom"
 						Margin="15,0,15,0"/>
-				<Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
 						Grid.Column="1"
 						Margin="0,10,15,0"
 						VerticalAlignment="Center"
 						Cursor="Hand"
 						Command="{Binding RefreshCmd}"
                         CommandParameter="1">
-					<md:PackIcon  Kind="Refresh"/>
-				</Button>
-				<Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                <md:PackIcon  Kind="Refresh"/>
+            </Button>
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
 						Grid.Column="2"
 						Margin="0,10,15,0"
 						VerticalAlignment="Center"
 						Cursor="Hand"
                         Command="{Binding SortContestantsCmd}">
-					<md:PackIcon  Kind="{Binding SortBtnIcon}"/>
-                    <Button.ContextMenu>
-                        <ContextMenu>
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Loaded">
-                                    <i:InvokeCommandAction Command="{Binding JudgeTableSortMenuLoadedCmd}"
+                <md:PackIcon  Kind="{Binding SortBtnIcon}"/>
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Loaded">
+                                <i:InvokeCommandAction Command="{Binding JudgeTableSortMenuLoadedCmd}"
                                                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ContextMenu}}}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <MenuItem Icon="{md:PackIcon Kind=SortAlphabeticalAscending}"
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <MenuItem Icon="{md:PackIcon Kind=SortAlphabeticalAscending}"
                                       Header="{StaticResource lang_NameAscending}"
                                       Command="{Binding SortTypeChangedCmd}"
                                       CommandParameter="0,0"/>
-                            <MenuItem Icon="{md:PackIcon Kind=SortAlphabeticalDescending}"
+                        <MenuItem Icon="{md:PackIcon Kind=SortAlphabeticalDescending}"
                                       Header="{StaticResource lang_NameDescending}"
                                       Command="{Binding SortTypeChangedCmd}"
                                       CommandParameter="1,0"/>
-                            <MenuItem Icon="{md:PackIcon Kind=SortNumericAscending}"
+                        <MenuItem Icon="{md:PackIcon Kind=SortNumericAscending}"
                                       Header="{StaticResource lang_PointsAscending}"
                                       Command="{Binding SortTypeChangedCmd}"
                                       CommandParameter="2,0"/>
-                            <MenuItem Icon="{md:PackIcon Kind=SortNumericDescending}"
+                        <MenuItem Icon="{md:PackIcon Kind=SortNumericDescending}"
                                       Header="{StaticResource lang_PointsDescending}"
                                       Command="{Binding SortTypeChangedCmd}"
                                       CommandParameter="3,0"/>
-                            <Separator/>
-                        </ContextMenu>
-                    </Button.ContextMenu>
-				</Button>
-				<Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                        <Separator/>
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
 						Grid.Column="3"
 						Margin="0,10,15,0"
 						VerticalAlignment="Center"
 						Cursor="Hand"
                         Command="{Binding StartJudgeCmd}"
                         CommandParameter="global">
-					<md:PackIcon  Kind="Play"/>
-				</Button>
-			</Grid>
-            <TabControl Grid.Row="1"
-                        HorizontalContentAlignment="Left"
-                        Style="{StaticResource MaterialDesignFilledTabControl}"
+                <md:PackIcon  Kind="Play"/>
+            </Button>
+        </Grid>
+        <TabControl Grid.Row="1" TabStripPlacement="Bottom"
+                        md:NavigationRailAssist.SelectionCornerRadius="5"
+						md:NavigationRailAssist.ShowSelectionBackground="True"
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}"
 					    FontFamily="{StaticResource MiSans}"
-                        Margin="20,10,25,0">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger x:Name="Loaded">
-                        <i:InvokeCommandAction Command="{Binding JudgeTabControlLoadedCmd}"
+                        Margin="20,10,25,0" HorizontalContentAlignment="Center">
+            <i:Interaction.Triggers>
+                <i:EventTrigger x:Name="Loaded">
+                    <i:InvokeCommandAction Command="{Binding JudgeTabControlLoadedCmd}"
                                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabControl}}}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-                <TabItem Width="auto" Height="auto"
-                         Padding="10" Header="{StaticResource lang_Charts}">
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            <TabItem Width="90px" Height="auto" Margin="5,10,5,10"
+                         Padding="10" Header="{StaticResource lang_Charts}"
+                         ToolTip="{StaticResource lang_Charts}">
+                <ScrollViewer>
                     <Grid DataContext="{Binding}" Margin="0,10,0,0">
+                        <b:Interaction.Behaviors>
+                            <b:FluidMoveBehavior Duration="0:0:0.3">
+                                <b:FluidMoveBehavior.EaseY>
+                                    <CircleEase EasingMode="EaseOut"/>
+                                </b:FluidMoveBehavior.EaseY>
+                            </b:FluidMoveBehavior>
+                        </b:Interaction.Behaviors>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
                                 <i:InvokeCommandAction Command="{Binding JudgeTableLoadedCmd}"
@@ -110,14 +122,14 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </Grid>
-                </TabItem>
+                </ScrollViewer>
+            </TabItem>
 
-                <TabItem Width="auto" Height="auto"
-                         Padding="10" Header="{StaticResource lang_Task}">
-                    <page:JudgeInfoPage/>
-                </TabItem>
+            <TabItem Width="90px" Height="auto" ToolTip="{StaticResource lang_Task}"
+                         Padding="10" Header="{StaticResource lang_Task}" Margin="5,10,5,10">
+                <page:JudgeInfoPage/>
+            </TabItem>
 
-            </TabControl>
-        </Grid>
-	</ScrollViewer>
+        </TabControl>
+    </Grid>
 </local:PageViewBase>

@@ -9,6 +9,7 @@
 			 xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
 			 xmlns:ut="clr-namespace:Contest_Killer.Utils"
 			 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:controls="clr-namespace:Contest_Killer.UserControls"
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=vm:ContestPageViewModel}">
@@ -69,12 +70,18 @@
             </TextBlock>
         </StackPanel>
 
-        <controls:FluentScrollViewer Grid.Row="1" Margin="0,10,0,0"
+        <ScrollViewer Grid.Row="1" Margin="0,10,0,0"
                       ut:ScrollViewerHelper.AlwaysScrollToEnd="True">
             <ItemsControl ItemTemplate="{StaticResource JudgeInfoTemplate}"
                           ItemsSource="{Binding JudgeInfos}">
-                
+                <b:Interaction.Behaviors>
+                    <b:FluidMoveBehavior Duration="0:0:0.3">
+                        <b:FluidMoveBehavior.EaseY>
+                            <CircleEase EasingMode="EaseOut"/>
+                        </b:FluidMoveBehavior.EaseY>
+                    </b:FluidMoveBehavior>
+                </b:Interaction.Behaviors>
             </ItemsControl>
-        </controls:FluentScrollViewer>
+        </ScrollViewer>
     </Grid>
 </UserControl>

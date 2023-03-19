@@ -9,6 +9,7 @@
 			 xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
 			 xmlns:ut="clr-namespace:Contest_Killer.Utils"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:controls="clr-namespace:Contest_Killer.UserControls"
 			 d:DesignHeight="720" d:DesignWidth="1080" Margin="5,10,5,0"
 			 d:DataContext="{d:DesignInstance Type=vm:HomePageViewModel}"
@@ -52,17 +53,24 @@
 			</Grid>
 		</DataTemplate>
 	</UserControl.Resources>
-	<controls:FluentScrollViewer>
+	<ScrollViewer>
 		<Grid>
-			<Grid.RowDefinitions>
+            <b:Interaction.Behaviors>
+                <b:FluidMoveBehavior Duration="0:0:0.3">
+                    <b:FluidMoveBehavior.EaseY>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </b:FluidMoveBehavior.EaseY>
+                </b:FluidMoveBehavior>
+            </b:Interaction.Behaviors>
+            <Grid.RowDefinitions>
 				<RowDefinition Height="auto"/>
 				<RowDefinition Height="auto"/>
 				<RowDefinition Height="auto"/>
 			</Grid.RowDefinitions>
 			<md:Card Grid.Row="0"
-				 Background="Transparent"
-				 Margin="10"
-				 UniformCornerRadius="5">
+					 Background="Transparent"
+					 Margin="10"
+					 UniformCornerRadius="5">
 				<Grid>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="Auto"/>
@@ -97,7 +105,14 @@
 							 SelectionChanged="PageSelectionChanged"
 							 PreviewMouseWheel="PagePreviewMouseWheel"
 							 ItemsSource="{Binding RecentContests}"
+                             SelectionMode="Single"
 							 SelectedIndex="{Binding Selected, Mode=TwoWay}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{Binding OpenCmd}"
+                                                       CommandParameter="{Binding Selected}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
 						<ListBox.ContextMenu>
 							<ContextMenu FontWeight="Medium">
 								<MenuItem Icon="{md:PackIcon Kind=OpenInNew}" Header="{StaticResource lang_Open}"
@@ -197,5 +212,5 @@
 				</Grid>
 			</md:Card>
 		</Grid>
-	</controls:FluentScrollViewer>
+	</ScrollViewer>
 </local:PageViewBase>
