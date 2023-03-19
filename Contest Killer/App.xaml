@@ -10,7 +10,6 @@
 	xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
 	xmlns:vm="clr-namespace:Contest_Killer.ViewModel"
 	xmlns:ut="clr-namespace:Contest_Killer.Utils"
-    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:controls="clr-namespace:Contest_Killer.UserControls"
 	xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
 	xmlns:system="clr-namespace:System;assembly=mscorlib">
@@ -99,15 +98,20 @@
                                CommandLine=""/>
 
             <vm:Settings x:Key="AppDefaultSettings"
+                         ImagePath="pack://application:,,,/Resources/default1.jpg"
                          TabWidth="72"
                          IsAutoTabWidthSelected="False"
                          TabWidthSliderEnabled="True"
+                         IsImageEnabled="True"
+                         IsUsingDefaultImage="True"
                          DefaultMemoLimit="128"
                          DefaultTimeLimit="1000"
                          DefaultPointScore="10"
                          IsDarkMode="False"
                          PrimaryColor="#673ab7"
                          PrimaryFontColor="#ffffff"
+                         DesiredContrastRatio="4.5"
+                         ContrastValue="Medium"
                          CurrentLanguage="en_US"
                          CompilerCpp="{StaticResource AppDefaultCompilerCPP}"
                          CompilerCSharp="{StaticResource AppDefaultCompilerCSharp}"
@@ -116,15 +120,13 @@
 
             <!--MainWindow-->
 			<DataTemplate x:Key="NavigationItemHeaderTemplate">
-                <Grid>
+				<Grid>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="Auto"/>
 						<RowDefinition Height="Auto"/>
 					</Grid.RowDefinitions>
-					<md:PackIcon Grid.Row="0" HorizontalAlignment="Center" Kind="{Binding Icon}" Width="24px" Height="24px"
-                                 Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
-					<TextBlock TextTrimming="CharacterEllipsis" Grid.Row="1" HorizontalAlignment="Center" Text="{Binding Title}"
-                               Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+					<md:PackIcon Grid.Row="0" HorizontalAlignment="Center" Kind="{Binding Icon}" Width="24px" Height="24px"/>
+					<TextBlock TextTrimming="CharacterEllipsis" Grid.Row="1" HorizontalAlignment="Center" Text="{Binding Title}"/>
 				</Grid>
 			</DataTemplate>
 
@@ -138,18 +140,13 @@
 			<!--MainWindowViewModel-->
 			<vm:MainWindowViewModel x:Key="MainWindow_VM"/>
 
-            <StackPanel x:Key="HomePageHeader" Orientation="Horizontal">
-                <Border Width="32px" Height="32px" VerticalAlignment="Center"
-                        Margin="25,0,0,0" CornerRadius="8">
-                    <Border.Background>
-                        <ImageBrush ImageSource="Resources/appIcon.ico"/>
-                    </Border.Background>
-                </Border>
-                <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
-						   Margin="10,0,0,0" VerticalAlignment="Center"
-						   FontSize="20px" FontWeight="Bold"
-						   Text="Contest Killer"/>
-            </StackPanel>
+			<TextBlock x:Key="HomePageHeader"
+					   Foreground="{DynamicResource MaterialDesignBody}"
+					   Margin="25,0,0,0"
+					   VerticalAlignment="Center"
+					   FontSize="20px" FontWeight="Bold"
+					   
+					   Text="Contest Killer"/>
 
 			<!--Global-->
 			<!---Golbal - Fonts -->
@@ -157,23 +154,8 @@
 			<FontFamily x:Key="MiSans">/Resources/MiSans-Medium.ttf#MiSans</FontFamily>
 			<Style TargetType="{x:Type TextElement}">
 				<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-				<Style.Triggers>
-					<Trigger Property="FontWeight" Value="Thin">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-Thin.ttf#MiSans Thin"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="ExtraLight">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-ExtraLight.ttf#MiSans Extralight"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="Light">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-Light.ttf#MiSans Light"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="Normal">
+                <Style.Triggers>
+                    <Trigger Property="FontWeight" Value="Normal">
 						<Trigger.Setters>
 							<Setter Property="FontFamily" Value="/Resources/MiSans-Normal.ttf#MiSans Normal"/>
 						</Trigger.Setters>
@@ -188,47 +170,22 @@
 							<Setter Property="FontFamily" Value="/Resources/MiSans-Regular.ttf#MiSans"/>
 						</Trigger.Setters>
 					</Trigger>
-					<Trigger Property="FontWeight" Value="SemiBold">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-SemiBold.ttf#MiSans SemiBold"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="DemiBold">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-DemiBold.ttf#MiSans Demibold"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="Bold">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-Bold.ttf#MiSans"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="Heavy">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-Heavy.ttf#MiSans Heavy"/>
-						</Trigger.Setters>
-					</Trigger>
-				</Style.Triggers>
+                    <Trigger Property="FontWeight" Value="SemiBold">
+                        <Trigger.Setters>
+                            <Setter Property="FontFamily" Value="/Resources/MiSans-SemiBold.ttf#MiSans SemiBold"/>
+                        </Trigger.Setters>
+                    </Trigger>
+                    <Trigger Property="FontWeight" Value="Bold">
+                        <Trigger.Setters>
+                            <Setter Property="FontFamily" Value="/Resources/MiSans-Bold.ttf#MiSans"/>
+                        </Trigger.Setters>
+                    </Trigger>
+                </Style.Triggers>
 			</Style>
 
 			<Style TargetType="{x:Type TextBlock}">
-				<Style.Triggers>
-					<Trigger Property="FontWeight" Value="Thin">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-Thin.ttf#MiSans Thin"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="ExtraLight">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-ExtraLight.ttf#MiSans Extralight"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="Light">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-Light.ttf#MiSans Light"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="Normal">
+                <Style.Triggers>
+                    <Trigger Property="FontWeight" Value="Normal">
 						<Trigger.Setters>
 							<Setter Property="FontFamily" Value="/Resources/MiSans-Normal.ttf#MiSans Normal"/>
 						</Trigger.Setters>
@@ -243,27 +200,17 @@
 							<Setter Property="FontFamily" Value="/Resources/MiSans-Regular.ttf#MiSans"/>
 						</Trigger.Setters>
 					</Trigger>
-					<Trigger Property="FontWeight" Value="SemiBold">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-SemiBold.ttf#MiSans SemiBold"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="DemiBold">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-DemiBold.ttf#MiSans Demibold"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="Bold">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-Bold.ttf#MiSans"/>
-						</Trigger.Setters>
-					</Trigger>
-					<Trigger Property="FontWeight" Value="Heavy">
-						<Trigger.Setters>
-							<Setter Property="FontFamily" Value="/Resources/MiSans-Heavy.ttf#MiSans Heavy"/>
-						</Trigger.Setters>
-					</Trigger>
-				</Style.Triggers>
+                    <Trigger Property="FontWeight" Value="SemiBold">
+                        <Trigger.Setters>
+                            <Setter Property="FontFamily" Value="/Resources/MiSans-SemiBold.ttf#MiSans SemiBold"/>
+                        </Trigger.Setters>
+                    </Trigger>
+                    <Trigger Property="FontWeight" Value="Bold">
+                        <Trigger.Setters>
+                            <Setter Property="FontFamily" Value="/Resources/MiSans-Bold.ttf#MiSans"/>
+                        </Trigger.Setters>
+                    </Trigger>
+                </Style.Triggers>
 			</Style>
 			
 			<!--Global - Var -->
@@ -389,10 +336,8 @@
 				<Setter Property="HorizontalAlignment" Value="Stretch"/>
 				<Setter Property="HorizontalContentAlignment" Value="Center"/>
 				<Setter Property="VerticalAlignment" Value="Stretch"/>
-				<Setter Property="Margin" Value="0"/>
-                <Setter Property="Padding" Value="10"/>
-                <Setter Property="Height" Value="auto"/>
-            </Style>
+				<Setter Property="Margin" Value="0,5,0,5"/>
+			</Style>
 
             <Style x:Key="JudgeTableCell"
 				   TargetType="Button"
@@ -403,72 +348,16 @@
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
                 <Setter Property="VerticalAlignment" Value="Stretch"/>
-                <Setter Property="Margin" Value="0"/>
-                <Setter Property="Padding" Value="10"/>
-                <Setter Property="Height" Value="auto"/>
+                <Setter Property="Margin" Value="0,5,0,5"/>
             </Style>
 
             <DataTemplate x:Key="JudgeInfoTemplate">
-                <Grid Margin="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" VerticalAlignment="Center"
-							   FontWeight="Bold" FontSize="16px"
-                               Margin="10,5,10,5">
-						<Run Text="{Binding PlayerName}"/>
-						<Run Text=" - "/>
-						<Run Text="{Binding ProblemName}"/>
-                    </TextBlock>
-
-                    <ItemsControl Grid.Row="1" Margin="10,5,10,5"
-								  ItemsSource="{Binding Points}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Border Margin="5" CornerRadius="5"
-                                        Background="{Binding BgColor, Converter={StaticResource HexStringColorCtr}}">
-                                    <Grid Width="150px" Height="100px">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="auto"/>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="auto"/>
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Grid.Row="0" Margin="10,5,10,5" FontSize="13px"
-                                                   FontWeight="SemiBold" Foreground="#ffffff"
-                                                   Text="{Binding PointID, StringFormat=#{0}}"/>
-                                        <TextBlock Grid.Row="1" VerticalAlignment="Center" Margin="10,0,10,0"
-                                                   HorizontalAlignment="Center" FontSize="20px"
-                                                   FontWeight="SemiBold" Foreground="#ffffff"
-                                                   ToolTip="{Binding State}"
-                                                   Text="{Binding State}" TextTrimming="CharacterEllipsis"/>
-                                        <TextBlock Grid.Row="2" Margin="0,5,0,10"
-                                                   HorizontalAlignment="Center" FontSize="13px"
-                                                   FontWeight="SemiBold" Foreground="#ffffff">
-                                                <Run Text="{Binding Time, StringFormat={}{0}ms}"/>
-                                                <Run Text="/"/>
-                                                <Run Text="{Binding Memory, StringFormat={}{0:F2}MB}"/>
-                                        </TextBlock>
-                                    </Grid>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
-                </Grid>
-            </DataTemplate>
-
-            <!--<DataTemplate x:Key="JudgeInfoTemplate">
                 <Grid Margin="10,10,10,10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <md:Card Grid.Column="0" Margin="0,0,20,0"
                              Background="{Binding BgColor, Converter={StaticResource HexStringColorCtr}}"
@@ -488,97 +377,84 @@
                     </TextBlock>
 
                     <TextBlock Grid.Column="2"
-                               Text="{Binding Time, StringFormat={}{0} ms, Mode=OneWay}"
 							   Margin="20,0,0,0"
                                FontSize="16px" FontWeight="Medium"
 							   VerticalAlignment="Center">
-                    </TextBlock>
-
-                    <TextBlock Grid.Column="3"
-                               Text="{Binding Memory, StringFormat={}{0:F2} MB, Mode=OneWay}"
-							   Margin="20,0,0,0"
-                               FontSize="16px" FontWeight="Medium"
-							   VerticalAlignment="Center">
+						<Run Text="{Binding Time, StringFormat={}{0} ms, Mode=OneWay}"/>
+						<Run Text="/"/>
+						<Run Text="{Binding Memory, StringFormat={}{0:F2} MB, Mode=OneWay}"/>
                     </TextBlock>
                 </Grid>
-            </DataTemplate>-->
+            </DataTemplate>
 
             <ut:PointState2Brush x:Key="PointStateCtr"/>
 
             <DataTemplate x:Key="ContestantDetailTemplate">
-                <Border Background="{DynamicResource MaterialDesignPaper}"
-                        Effect="{StaticResource MaterialDesignShadowDepth2}"
-                        Margin="10" CornerRadius="5">
-                    <Expander Background="Transparent"
-                              ClipToBounds="True"
-							  HorizontalAlignment="Stretch"
-							  IsExpanded="True" Padding="10,0,10,0"
-							  DataContext="{Binding}">
-                        <Expander.Header>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding BoundedProblem.Title}"
-										   FontWeight="Bold" FontSize="20px"
-										   Margin="10,0,10,0" Foreground="{DynamicResource PrimaryHueMidBrush}"
-										   Grid.Column="0"/>
-                                <TextBlock Text="{Binding TotalPoints}"
-										   FontWeight="SemiBold" FontSize="20px"
-										   Margin="10,0,10,0"
-										   Grid.Column="1"/>
-                            </Grid>
-                        </Expander.Header>
-                        <ItemsControl ItemsSource="{Binding Points}"
-									  Margin="24,0,24,16">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Height="auto">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="210px"/>
-                                            <ColumnDefinition Width="1*"/>
-                                            <ColumnDefinition Width="1*"/>
-                                            <ColumnDefinition Width="3*"/>
-                                        </Grid.ColumnDefinitions>
+                <Expander Background="Transparent"
+						  HorizontalAlignment="Stretch"
+						  IsExpanded="True" Padding="10,0,10,0"
+						  DataContext="{Binding}">
+                    <Expander.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding BoundedProblem.Title}"
+                                     FontWeight="SemiBold" FontSize="20px"
+                                     Margin="10,0,10,10"
+                                     Grid.Column="0"/>
+                            <TextBlock Text="{Binding TotalPoints}"
+                                       FontWeight="SemiBold" FontSize="20px"
+                                       Margin="10,0,10,10"
+                                       Grid.Column="1"/>
+                            <Border BorderBrush="{DynamicResource MaterialDesignDivider}"
+									Grid.Column="0" Grid.ColumnSpan="2"
+									BorderThickness="0 0 0 3"
+									VerticalAlignment="Bottom"/>
+                        </Grid>
+                    </Expander.Header>
+                    <ItemsControl ItemsSource="{Binding Points}"
+								  Margin="24,8,24,16">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="220px"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                                        <TextBlock FontWeight="Bold" FontSize="16px"
-												   Foreground="{Binding PointState, Converter={StaticResource PointStateCtr}, Mode=OneWay}"
-												   Text="{Binding PointState}"
+                                    <TextBlock FontWeight="Bold" FontSize="16px"
+                                                   Foreground="{Binding PointState, Converter={StaticResource PointStateCtr}, Mode=OneWay}"
+                                                   Text="{Binding PointState}"
 												   Grid.Column="0" Margin="0,10,10,10"
-												   VerticalAlignment="Center">
+												   VerticalAlignment="Center" HorizontalAlignment="Center">
                                         </TextBlock>
 
-                                        <TextBlock FontWeight="Medium" FontSize="16px"
-												   Grid.Column="1" Margin="10" TextTrimming="CharacterEllipsis"
-												   VerticalAlignment="Center"
-												   ToolTip="{Binding Time}"
-												   Text="{Binding Time, StringFormat={}{0}ms}">
-                                        </TextBlock>
+                                    <TextBlock FontWeight="Medium" FontSize="16px"
+											   Grid.Column="1" Margin="10,10,10,10"
+											   VerticalAlignment="Center">
+											<Run Text="{Binding Time, StringFormat={}{0}ms}"/>
+											<Run Text=" - "/>
+											<Run Text="{Binding Memory, StringFormat={}{0:F2}MB}"/>
+                                    </TextBlock>
 
-                                        <TextBlock FontWeight="Medium" FontSize="16px"
-												   Grid.Column="2" Margin="10" TextTrimming="CharacterEllipsis"
-												   VerticalAlignment="Center"
-												   ToolTip="{Binding Memory}"
-												   Text="{Binding Memory, StringFormat={}{0:F2}MB}">
-                                        </TextBlock>
+                                    <TextBlock FontWeight="Medium" FontSize="16px"
+                                               Grid.Column="2" Margin="10,10,10,10"
+                                               Text="{Binding Infomation}"
+                                               TextWrapping="Wrap"/>
 
-                                        <TextBlock FontWeight="Medium" FontSize="16px"
-												   Grid.Column="3" Margin="10"
-												   Text="{Binding Infomation}"
-												   ToolTip="{Binding Infomation}"
-												   TextTrimming="CharacterEllipsis"/>
-
-                                        <Border BorderBrush="{DynamicResource MaterialDesignDivider}"
-												Grid.Column="0" Grid.ColumnSpan="4"
-												BorderThickness="0 0 0 1.5"
-												VerticalAlignment="Bottom"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </Expander>
-                </Border>
+                                    <Border BorderBrush="{DynamicResource MaterialDesignDivider}"
+										Grid.Column="0" Grid.ColumnSpan="3"
+										BorderThickness="0 0 0 1"
+										VerticalAlignment="Bottom"/>
+                                </Grid>
+                                
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Expander>
             </DataTemplate>
 
             <!--Global - ProblemPage -->
