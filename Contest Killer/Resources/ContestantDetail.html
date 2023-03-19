@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{contestant_name}}</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      margin: 0 auto;
+      width: 90%;
+      max-width: 1000px;
+      margin-bottom: 50px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #fff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #dddddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr{
+      color: #555;
+    }
+
+    tbody tr:hover{
+      background-color: #dedede;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    @media only screen and (max-width: 768px) {
+      table {
+        width: 100%;
+      }
+      th, td {
+        padding: 10px;
+      }
+    }
+
+    h2{
+      color: #555;
+      border-left: 5px solid rgba(0, 0, 0, 0.5);
+      padding-left: 20px;
+      height: 50px;
+      line-height: 50px;
+    }
+
+    h3{
+      color: #555;
+      border-left: 5px solid rgba(0, 0, 0, 0.5);
+      padding-left: 20px;
+      height: 25px;
+      line-height: 25px;
+    }
+
+      @media print {
+          body {
+              margin: 0;
+              padding: 0;
+              font-family: Consolas, sans-serif;
+          }
+
+          .container {
+              margin: 0 auto;
+              width: 90%;
+              max-width: 1000px;
+              margin-bottom: 50px;
+          }
+
+          table {
+              border-collapse: collapse;
+              width: 100%;
+              background-color: #fff;
+              box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+              border-radius: 10px;
+              overflow: hidden;
+          }
+
+          th, td {
+              padding: 15px;
+              text-align: left;
+              border-bottom: 1px solid #dddddd;
+          }
+
+          th {
+              background-color: #f2f2f2;
+          }
+
+          tr:nth-child(even) {
+              background-color: #f9f9f9;
+          }
+
+          tbody tr {
+              color: #555;
+          }
+
+          h2 {
+              color: #555;
+              border-left: 5px solid rgba(0, 0, 0, 0.5);
+              padding-left: 20px;
+              height: 50px;
+              line-height: 50px;
+          }
+
+          h3 {
+              color: #555;
+              border-left: 5px solid rgba(0, 0, 0, 0.5);
+              padding-left: 20px;
+              height: 25px;
+              line-height: 25px;
+          }
+      }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>{{contestant_name}}</h2>
+    {{contestant_data}}
+  </div>
+</body>
+</html>
