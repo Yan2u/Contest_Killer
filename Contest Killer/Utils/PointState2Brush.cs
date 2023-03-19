@@ -15,7 +15,7 @@ namespace Contest_Killer.Utils
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!(value is ContestantPointState)) return null;
-            return new SolidColorBrush(JudgeInfo.StateBackground[(int)value]);
+            return new SolidColorBrush(JudgeInfoPoint.StateBackground[(int)value]);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

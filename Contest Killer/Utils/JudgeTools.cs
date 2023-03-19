@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Contest_Killer.Utils
@@ -22,7 +23,7 @@ namespace Contest_Killer.Utils
     public static class Checker
     {
         public static CheckResult Check(string std, string test)
-        {
+        {            
             if (!File.Exists(std)) return new CheckResult() { Pass = false, Error = true, Information = $"{Path.GetFileName(std)} not existed" };
             if (!File.Exists(test)) return new CheckResult() { Pass = false, Error = true, Information = $"{Path.GetFileName(test)} not existed" };
 
@@ -200,7 +201,7 @@ namespace Contest_Killer.Utils
                     }
 
                     process.Start();
-                    process.WaitForExit(10000);
+                    process.WaitForExit();
 
                     if (process.ExitCode != 0)
                     {
