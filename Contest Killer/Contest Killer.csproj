@@ -16,6 +16,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,10 +27,12 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>Contest Killer</ProductName>
+    <PublisherName>LOSER</PublisherName>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationVersion>1.5.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -52,7 +55,25 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>appIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>00E4CB758C3D9F66093D4D1D1FFE16526C18006D</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Contest Killer_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=2.1.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.2.1.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
@@ -83,9 +104,13 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Pechkin, Version=0.5.8.1, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\packages\Pechkin.0.5.8.1\lib\net40\Pechkin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -117,6 +142,9 @@
     </Compile>
     <Compile Include="UserControls\BackgroundPage.xaml.cs">
       <DependentUpon>BackgroundPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ComboBoxPage.xaml.cs">
+      <DependentUpon>ComboBoxPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\CompilerConfigPage.xaml.cs">
       <DependentUpon>CompilerConfigPage.xaml</DependentUpon>
@@ -165,9 +193,12 @@
     <Compile Include="UserControls\ThemePage.xaml.cs">
       <DependentUpon>ThemePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\ComboBox.cs" />
     <Compile Include="Utils\DeepCopy.cs" />
     <Compile Include="Utils\DialogHelper.cs" />
     <Compile Include="Utils\DirectoryTools.cs" />
+    <Compile Include="Utils\FileCleaner.cs" />
+    <Compile Include="Utils\FileExporter.cs" />
     <Compile Include="Utils\FileListDisplayCtr.cs" />
     <Compile Include="Utils\FilePath2Name.cs" />
     <Compile Include="Utils\InputBox.cs" />
@@ -190,7 +221,10 @@
     <Compile Include="ViewModel\ContestantPoint.cs" />
     <Compile Include="ViewModel\ContestantScore.cs" />
     <Compile Include="ViewModel\ContestItemBase.cs" />
+    <Compile Include="ViewModel\ContestJudgePageViewModel.cs" />
+    <Compile Include="ViewModel\ContestOverviewPageViewModel.cs" />
     <Compile Include="ViewModel\ContestPageViewModel.cs" />
+    <Compile Include="ViewModel\ContestProblemPageViewModel.cs" />
     <Compile Include="ViewModel\FileIOPair.cs" />
     <Compile Include="ViewModel\HomePageViewModel.cs" />
     <Compile Include="ViewModel\JudgeInfo.cs" />
@@ -210,6 +244,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\BackgroundPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ComboBoxPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -321,6 +359,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="Contest Killer_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -344,14 +383,6 @@
     <EmbeddedResource Include="Resources\runner.exe" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\default1.jpg" />
-    <Resource Include="Resources\default2.jpg" />
-    <Resource Include="Resources\default3.jpg" />
-    <Resource Include="Resources\default4.jpg" />
-    <Resource Include="Resources\default5.jpg" />
-    <Resource Include="Resources\default6.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\table.html" />
   </ItemGroup>
   <ItemGroup>
@@ -365,6 +396,29 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Contest.html" />
+    <EmbeddedResource Include="Resources\ContestantDetail.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="appIcon.ico" />
+    <Content Include="libeay32.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libgcc_s_dw2-1.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mingwm10.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\appIcon.ico" />
+    <Content Include="ssleay32.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="wkhtmltox0.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" />

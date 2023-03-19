@@ -41,74 +41,74 @@
 				<RowDefinition Height="60"/>
 				<RowDefinition Height="*"/>
 			</Grid.RowDefinitions>
-			<Grid Grid.Row="0">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="auto"/>
-					<ColumnDefinition Width="auto"/>
-					<ColumnDefinition Width="auto"/>
-				</Grid.ColumnDefinitions>
-				<ContentControl Grid.Column="0"
-								Content="{Binding CurrentPage.PageHeader}"/>
-
-				<Button x:Name="MinWindowBtn"
-						WindowChrome.IsHitTestVisibleInChrome="True"
-						Click="MinWindowBtn_Click"
-						VerticalAlignment="Center"
-						Style="{StaticResource MaterialDesignIconButton}"
-						Grid.Column="1" Margin="0,0,10,0" ToolTip="Minimize"
-						CommandParameter="-1" >
-					<md:PackIcon Kind="WindowMinimize"/>
-				</Button>
-				<Button x:Name="MaxWindowBtn"
-						WindowChrome.IsHitTestVisibleInChrome="True"
-						Click="MaxWindowBtn_Click"
-						VerticalAlignment="Center"
-						Style="{StaticResource MaterialDesignIconButton}"
-						Grid.Column="2" Margin="0,0,10,0" ToolTip="Resize"
-						CommandParameter="-1" >
-					<md:PackIcon x:Name="MaxWindowBtnIcon" Kind="WindowMaximize"/>
-				</Button>
-				<Button x:Name="CloseWindowBtn"
-						WindowChrome.IsHitTestVisibleInChrome="True"
-						Click="CloseWindowBtn_Click"
-						VerticalAlignment="Center"
-						Style="{StaticResource MaterialDesignIconButton}"
-						Grid.Column="3" Margin="0,0,10,0" ToolTip="Close"
-						CommandParameter="-1" >
-					<md:PackIcon Kind="Close"/>
-				</Button>
-			</Grid>
-			<Grid Grid.Row="1">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="auto"/>
-					<ColumnDefinition Width="*"/>
-				</Grid.ColumnDefinitions>
-				<ListBox Grid.Column="0"
-						 Style="{StaticResource MaterialDesignNavigationPrimaryListBox}"
-						 ItemsSource="{Binding NavigationItems}"
-						 SelectedIndex="{Binding Selected}"
-						 SelectionMode="Single"
-						 ItemTemplate="{StaticResource NavigationItemHeaderTemplate}"
-						 VerticalAlignment="Center">
-					<ListBox.ItemContainerStyle>
-						<Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignNavigationPrimaryListBoxItem}">
-							<Setter Property="HorizontalContentAlignment" Value="Center"/>
-							<Setter Property="Width" Value="{Binding Source={StaticResource AppSettings}, Path=TabWidth, FallbackValue=72}"/>
-						</Style>
-					</ListBox.ItemContainerStyle>
-				</ListBox>
-				<Grid Grid.Column="1">
-					<ContentControl Content="{Binding CurrentPage}"/>
-				</Grid>
-			</Grid>
-            <Image Source="{Binding Source={StaticResource AppSettings}, Path=ImagePath}"
-				   Panel.ZIndex="-1"
-				   Opacity="0.9"
-				   Stretch="UniformToFill"
-				   Grid.Row="0"
-				   Grid.RowSpan="2">
-			</Image>
-		</Grid>
+            <Border Grid.Row="0" Background="{DynamicResource PrimaryHueMidBrush}"
+                    Effect="{StaticResource MaterialDesignShadowDepth2}" Panel.ZIndex="999">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <ContentControl Grid.Column="0"
+									Content="{Binding CurrentPage.PageHeader}"/>
+                    <Button x:Name="MinWindowBtn"
+							WindowChrome.IsHitTestVisibleInChrome="True"
+							Click="MinWindowBtn_Click"
+							VerticalAlignment="Center"
+							Style="{StaticResource MaterialDesignIconButton}"
+							Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+							Grid.Column="1" Margin="0,0,10,0" ToolTip="Minimize"
+							CommandParameter="-1" >
+                        <md:PackIcon Kind="WindowMinimize"/>
+                    </Button>
+                    <Button x:Name="MaxWindowBtn"
+							WindowChrome.IsHitTestVisibleInChrome="True"
+							Click="MaxWindowBtn_Click"
+							VerticalAlignment="Center"
+							Style="{StaticResource MaterialDesignIconButton}"
+							Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+							Grid.Column="2" Margin="0,0,10,0" ToolTip="Resize"
+							CommandParameter="-1" >
+                        <md:PackIcon x:Name="MaxWindowBtnIcon" Kind="WindowMaximize"/>
+                    </Button>
+                    <Button x:Name="CloseWindowBtn"
+							WindowChrome.IsHitTestVisibleInChrome="True"
+							Click="CloseWindowBtn_Click"
+							VerticalAlignment="Center"
+							Style="{StaticResource MaterialDesignIconButton}"
+							Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+							Grid.Column="3" Margin="0,0,10,0" ToolTip="Close"
+							CommandParameter="-1" Cursor="Hand" >
+                        <md:PackIcon Kind="Close"/>
+                    </Button>
+                </Grid>
+            </Border>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Background="{DynamicResource PrimaryHueMidBrush}"
+                        Effect="{StaticResource MaterialDesignShadowDepth2}">
+                    <ListBox VerticalAlignment="Center"
+							 Style="{StaticResource MaterialDesignNavigationListBox}"
+							 ItemsSource="{Binding NavigationItems}"
+							 SelectedIndex="{Binding Selected}"
+							 SelectionMode="Single"
+							 ItemTemplate="{StaticResource NavigationItemHeaderTemplate}">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignNavigationPrimaryListBoxItem}">
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="Width" Value="{Binding Source={StaticResource AppSettings}, Path=TabWidth, FallbackValue=72}"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                </Border>
+                <Border Grid.Column="1" ClipToBounds="True" CornerRadius="5" Margin="-5">
+                    <ContentControl Content="{Binding CurrentPage}"/>
+                </Border>
+            </Grid>
+        </Grid>
 	</md:DialogHost>
 </Window>
