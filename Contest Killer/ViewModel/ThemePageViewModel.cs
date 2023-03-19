@@ -52,22 +52,6 @@ namespace Contest_Killer.ViewModel
             }
         }
 
-        public IEnumerable<Contrast> ContrastValues => Enum.GetValues(typeof(Contrast)).Cast<Contrast>();
-
-        private float desiredContrastRatio;
-        public float DesiredContrastRatio
-        {
-            get => desiredContrastRatio;
-            set => Set(ref desiredContrastRatio, value);
-        }
-
-        private Contrast contrastValue;
-        public Contrast ContrastValue
-        {
-            get => contrastValue;
-            set => Set(ref contrastValue, value);
-        }
-
         public RelayCommand<Color> ChangeColorCmd => new RelayCommand<Color>((Color c) =>
         {
             switch (Selected)
@@ -82,8 +66,6 @@ namespace Contest_Killer.ViewModel
         {
             PrimaryColor = settings.PrimaryColor == null ? Color.FromRgb(0,0,0) : settings.PrimaryColor;
             PrimaryFontColor = settings.PrimaryFontColor == null ? Color.FromRgb(0, 0, 0) : settings.PrimaryFontColor;
-            DesiredContrastRatio = settings.DesiredContrastRatio;
-            ContrastValue = settings.ContrastValue;
             Selected = 0;
         }
     }

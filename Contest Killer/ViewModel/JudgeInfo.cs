@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using System.Windows.Media;
 
 namespace Contest_Killer.ViewModel
 {
-    public class JudgeInfo : ViewModelBase
+    public class JudgeInfoPoint : ViewModelBase
     {
         public static Color[] StateBackground =
         {
@@ -23,27 +24,6 @@ namespace Contest_Killer.ViewModel
         };
 
         public static Color TempColor = StateBackground[0];
-
-        private Color bgColor;
-        public Color BgColor
-        {
-            get=> bgColor;
-            set => Set(ref bgColor, value);
-        }
-
-        private string playerName;
-        public string PlayerName
-        {
-            get => playerName;
-            set => Set(ref playerName, value);
-        }
-
-        private string problemName;
-        public string ProblemName
-        {
-            get => problemName;
-            set => Set(ref problemName, value);
-        }
 
         private int pointID;
         public int PointID
@@ -71,6 +51,42 @@ namespace Contest_Killer.ViewModel
         {
             get => state;
             set => Set(ref state, value);
+        }
+
+        private Color bgColor;
+        public Color BgColor
+        {
+            get => bgColor;
+            set => Set(ref bgColor, value);
+        }
+    }
+
+    public class JudgeInfo : ViewModelBase
+    {
+        private string playerName;
+        public string PlayerName
+        {
+            get => playerName;
+            set => Set(ref playerName, value);
+        }
+
+        private string problemName;
+        public string ProblemName
+        {
+            get => problemName;
+            set => Set(ref problemName, value);
+        }
+
+        private ObservableCollection<JudgeInfoPoint> points;
+        public ObservableCollection<JudgeInfoPoint> Points
+        {
+            get => points;
+            set => Set(ref points, value);
+        }
+
+        public JudgeInfo()
+        {
+            Points = new ObservableCollection<JudgeInfoPoint>();
         }
     }
 }

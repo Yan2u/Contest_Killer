@@ -37,7 +37,14 @@ namespace Contest_Killer.ViewModel
 			set => Set(ref time, value);
         }
 
-		private double memory;
+        private int pts;
+        public int Pts
+        {
+            get => pts;
+            set => Set(ref pts, value);
+        }
+
+        private double memory;
 		public double Memory
         {
 			get => memory;

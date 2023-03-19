@@ -31,43 +31,6 @@ namespace Contest_Killer.ViewModel
             set => Set(ref barMessageQueue, value);
         }
 
-        public RelayCommand EditBackgroundCmd => new RelayCommand(() =>
-        {
-            if (CKSettings.IsUsingDefaultImage)
-            {
-                BackgroundPageViewModel vm = new BackgroundPageViewModel();
-                for (int i = 1; i <= 6; i++)
-                {
-                    vm.Items.Add(new BuiltInBackgroundItem() { Source = new BitmapImage(new Uri($"/Resources/default{i}.jpg", UriKind.Relative)) });
-                }
-
-                BackgroundPage page = new BackgroundPage() { DataContext = vm };
-                Utils.InputBox.Show(MainWindowVM, page, new Action<bool>((bool confirm) =>
-                {
-                    if (confirm)
-                    {
-                        CKSettings.ImagePath = null;
-                        CKSettings.ImagePath = vm.Items[vm.Selected].Source;
-                    }
-                    vm.Items.Clear();
-                    vm.Items = null;
-                    page = null;
-                    vm = null;
-                }));
-            }
-            else
-            {
-                OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Title = System.Windows.Application.Current.Resources["lang_ChooseBackground"] as string;
-                dialog.Multiselect = false;
-                dialog.Filter = "Image Files(*.jpg, *.png, *.bmp) | *.jpg; *.png; *.bmp";
-                if(dialog.ShowDialog() == DialogResult.OK)
-                {
-                    CKSettings.ImagePath = new BitmapImage(new Uri(dialog.FileName, UriKind.Absolute));
-                }
-            }
-        });
-
         public RelayCommand SaveSettingsCmd => new RelayCommand(() =>
         {
             CKSettings.JsonSave();
@@ -103,8 +66,6 @@ namespace Contest_Killer.ViewModel
                 {
                     CKSettings.PrimaryColor = vm.PrimaryColor;
                     CKSettings.PrimaryFontColor = vm.PrimaryFontColor;
-                    CKSettings.DesiredContrastRatio = vm.DesiredContrastRatio;
-                    CKSettings.ContrastValue = vm.ContrastValue;
                     CKSettings.UpdateThemeColors();
                 }
             }));

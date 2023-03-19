@@ -25,13 +25,6 @@ namespace Contest_Killer.ViewModel
     public class Settings : ViewModelBase
     {
         // Appearence
-        private ImageSource imagePath;
-        public ImageSource ImagePath
-        {
-            get => imagePath;
-            set => Set(ref imagePath, value);
-        }
-
         private double tabWidth;
         public double TabWidth
         {
@@ -60,25 +53,6 @@ namespace Contest_Killer.ViewModel
             set => Set(ref tabWidthSliderEnabled, value);
         }
 
-        private bool isImageEnabled;
-        public bool IsImageEnabled
-        {
-            get => isImageEnabled;
-            set
-            {
-                Set(ref isImageEnabled, value);
-                if (!value) ImagePath = null;
-            }
-        }
-
-        private bool isUsingDefaultImage;
-        public bool IsUsingDefaultImage
-        {
-            get => isUsingDefaultImage;
-            set => Set(ref isUsingDefaultImage, value);
-        }
-
-
         private Color? primaryColor;
         public Color? PrimaryColor
         {
@@ -93,21 +67,6 @@ namespace Contest_Killer.ViewModel
             set => Set(ref primaryFontColor, value);
         }
 
-
-        private float desiredContrastRatio;
-        public float DesiredContrastRatio
-        {
-            get => desiredContrastRatio;
-            set => Set(ref desiredContrastRatio, value);
-        }
-
-        private Contrast contrastValue;
-        public Contrast ContrastValue
-        {
-            get => contrastValue;
-            set => Set(ref contrastValue, value);
-        }
-
         private PaletteHelper helper = new PaletteHelper();
 
         private bool isDarkMode;
@@ -120,13 +79,6 @@ namespace Contest_Killer.ViewModel
                 Set(ref isDarkMode, value);
                 Theme theme = (Theme)helper.GetTheme();
                 theme.SetBaseTheme(value ? Theme.Dark : Theme.Light);
-                if (theme.ColorAdjustment == null) theme.ColorAdjustment = new ColorAdjustment()
-                {
-                    DesiredContrastRatio = this.DesiredContrastRatio,
-                    Contrast = this.ContrastValue,
-                    Colors = ColorSelection.All
-                };
-
                 helper.SetTheme(theme);
             }
         }
@@ -207,13 +159,6 @@ namespace Contest_Killer.ViewModel
             theme.PrimaryLight = new ColorPair((Color)PrimaryColor, PrimaryFontColor);
             theme.PrimaryMid = new ColorPair((Color)PrimaryColor, PrimaryFontColor);
             theme.PrimaryDark = new ColorPair((Color)PrimaryColor, PrimaryFontColor);
-
-            if (theme.ColorAdjustment == null) theme.ColorAdjustment = new ColorAdjustment()
-            {
-                DesiredContrastRatio = this.DesiredContrastRatio,
-                Contrast = this.ContrastValue,
-                Colors = ColorSelection.All
-            };
 
             helper.SetTheme(theme);
         }

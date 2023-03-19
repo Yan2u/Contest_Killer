@@ -151,6 +151,7 @@ namespace Contest_Killer.ViewModel
             t.NavItem = item;
             NavigationItems.Add(item);
             Selected = NavigationItems.Count - 1;
+
             return true;
         }
 

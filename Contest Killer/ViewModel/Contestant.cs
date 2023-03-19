@@ -55,7 +55,10 @@ namespace Contest_Killer.ViewModel
 		private void updateTotalPoints()
 		{
 			TotalPoints = 0;
-			foreach (ContestantScore sc in Score) TotalPoints += sc.TotalPoints;
+			foreach (ContestantScore sc in Score)
+			{
+                TotalPoints += sc.TotalPoints;
+            }
 		}
 
 		public Contestant()
