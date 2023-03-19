@@ -5,12 +5,28 @@
 	d1p1:Ignorable="d"
 	xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:s="clr-namespace:System;assembly=mscorlib">
-	
-	<!--Message-->
+
+    <!--Message-->
     <s:String x:Key="lang_BackHome">
         Back to homepage
     </s:String>
-    
+
+    <s:String x:Key="lang_Name">
+        Name
+    </s:String>
+
+    <s:String x:Key="lang_State">
+        State
+    </s:String>
+
+    <s:String x:Key="lang_Information">
+        Information
+    </s:String>
+
+    <s:String x:Key="lang_Memory">
+        Memory
+    </s:String>
+
     <s:String x:Key="lang_Close">
         Close
     </s:String>
@@ -23,21 +39,25 @@
         Need to Restart the App
     </s:String>
 
+    <s:String x:Key="lang_OpeningContest">
+        Opening Contest ...
+    </s:String>
+
     <s:String x:Key="lang_Message">
-		Message
-	</s:String>
+        Message
+    </s:String>
 
-	<s:String x:Key="lang_Input">
-		Input
-	</s:String>
+    <s:String x:Key="lang_Input">
+        Input
+    </s:String>
 
-	<s:String x:Key="lang_Help">
-		Help
-	</s:String>
+    <s:String x:Key="lang_Help">
+        Help
+    </s:String>
 
-	<s:String x:Key="lang_Attention">
-		Attention
-	</s:String>
+    <s:String x:Key="lang_Attention">
+        Attention
+    </s:String>
 
     <s:String x:Key="lang_Error">
         Error
@@ -193,10 +213,10 @@
 
     <s:String x:Key="lang_CompilerCPP" xml:space="preserve">Compiler - C++</s:String>
     <s:String x:Key="lang_EditCPP" xml:space="preserve">Edit - g++.exe</s:String>
-    
+
     <s:String x:Key="lang_CompilerCSharp" xml:space="preserve">Compiler - C#</s:String>
     <s:String x:Key="lang_EditCSharp" xml:space="preserve">Edit - csc.exe</s:String>
-    
+
     <s:String x:Key="lang_CompilerJava" xml:space="preserve">Compiler - Java</s:String>
     <s:String x:Key="lang_EditJavaCompiler" xml:space="preserve">Edit - javac.exe</s:String>
     <s:String x:Key="lang_EditJavaInterpreter" xml:space="preserve">Browse - java.exe</s:String>
@@ -213,8 +233,8 @@
     </s:String>
 
     <s:String x:Key="lang_SettingsThemeContrastHelpDetail">
-        In the dark mode, depending on the preset contrast, the theme color will be different from the preset, and the bright mode will not be affected.\n
-		Set the contrast when setting the theme color.
+        Due to the UI design, certain texts and graphics are also displayed in theme colors.\n
+        When switching to dark mode, it's recommended not to set the theme color too dark in order to ensure clear differentiation.
     </s:String>
 
     <s:String x:Key="lang_SettingsReopenTipDetail">
@@ -223,7 +243,7 @@
 		At present, no effective method has been found to free memory.\n
 		Therefore, after changing the background picture, please save the settings and restart the program to free the memory.
     </s:String>
-    
+
     <!--HomePage-->
     <s:String x:Key="lang_RecentContest" xml:space="preserve">Recent Contests</s:String>
 
@@ -254,7 +274,7 @@
     <s:String x:Key="lang_DeleteSure" xml:space="preserve">Are you sure to remove all the items?</s:String>
 
     <s:String x:Key="lang_SelectContestFolder" xml:space="preserve">Select Contest Folder</s:String>
-    
+
     <!--ContestPage-->
     <s:String x:Key="lang_Overview">
         Overview
@@ -318,7 +338,7 @@
     </s:String>
 
     <s:String x:Key="lang_NameAscending" xml:space="preserve">Name Ascending</s:String>
-    
+
     <s:String x:Key="lang_NameDescending" xml:space="preserve">Name Descending</s:String>
 
     <s:String x:Key="lang_PointsAscending" xml:space="preserve">Points Ascending</s:String>
@@ -367,21 +387,21 @@
 		3.Click the fresh button on the contest infomation page to load the added points.\n
 		4.In default case, each point has one I/O file pair.
     </s:String>
-    
-    
+
+
     <s:String x:Key="lang_ProblemPageAddPtsBtnMenuHeader">
-		Dragdrop files help
-	</s:String>
+        Dragdrop files help
+    </s:String>
 
 
-	<s:String x:Key="lang_CheckPointBtnTip2">
-		Right Click: Clear all the pairs which have empty I/O files.
-	</s:String>
-    
-    
+    <s:String x:Key="lang_CheckPointBtnTip2">
+        Right Click: Clear all the pairs which have empty I/O files.
+    </s:String>
+
+
     <!--JudgePage-->
     <s:String x:Key="lang_EvalCompleted" xml:space="preserve">Evaluation completed</s:String>
-    
+
     <!--AboutPage-->
     <s:String x:Key="lang_AboutOpenSource" xml:space="preserve">About &amp; Open Source</s:String>
 
@@ -408,5 +428,20 @@
 
     <s:String x:Key="lang_CheckPointBtnTip1">
         Left Click: Check all the pairs to see if files exist.
+    </s:String>
+
+    <s:String x:Key="lang_CleaningFiles">
+        Cleaning files - {0}, please wait...
+    </s:String>
+
+    <s:String x:Key="lang_UnableToDeleteFile">
+        Unable to delete file(s):\n
+        {0}\n
+        This is probably becase ContestKiller can't access the blocking process. The process may still be alive, and may cause potential troubles.\n
+        You may manually delete the file(s) later, and it is suggested to launch ContestKiller as administrator to avoid seeing the message again.
+    </s:String>
+
+    <s:String x:Key="lang_ChooseExportFormat">
+        Choose Format for File Export
     </s:String>
 </ResourceDictionary>

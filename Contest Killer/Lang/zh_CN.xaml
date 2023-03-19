@@ -10,7 +10,23 @@
     <s:String x:Key="lang_BackHome">
         回到主页
     </s:String>
-    
+
+    <s:String x:Key="lang_Name">
+        名称
+    </s:String>
+
+    <s:String x:Key="lang_State">
+        状态
+    </s:String>
+
+    <s:String x:Key="lang_Information">
+         信息
+    </s:String>
+
+    <s:String x:Key="lang_Memory">
+        内存
+    </s:String>
+
     <s:String x:Key="lang_Close">
         关闭
     </s:String>
@@ -22,7 +38,11 @@
     <s:String x:Key="lang_RestartNeeded">
         需要重启应用
     </s:String>
-    
+
+    <s:String x:Key="lang_OpeningContest">
+        正在打开竞赛 ...
+    </s:String>
+
     <s:String x:Key="lang_Message">
         消息
     </s:String>
@@ -213,8 +233,7 @@
     </s:String>
 
     <s:String x:Key="lang_SettingsThemeContrastHelpDetail">
-        在切换到暗黑模式时，主题颜色会自动调整，调整后的主题色和设定颜色的差别取决于对比度的设置\n
-		可以在设置主题颜色时设置对比度
+        因为 UI 的设计，一些文字和图形也会用主题颜色显示。在切换到暗黑模式时，建议不要把主题颜色调得太深，以免分辨不清。
     </s:String>
 
     <s:String x:Key="lang_SettingsReopenTipDetail">
@@ -408,5 +427,20 @@
 
     <s:String x:Key="lang_CheckPointBtnTip1">
         Left Click: Check all the pairs to see if files exist.
+    </s:String>
+
+    <s:String x:Key="lang_CleaningFiles">
+        正在删除文件 - {0}，请稍后 ...
+    </s:String>
+
+    <s:String x:Key="lang_UnableToDeleteFile">
+        没能删除以下文件：\n
+        {0}\n
+        这可能是因为 Contest Killer 无法访问被堵塞的进程导致的，这个进程可能依然存活，可能导致不必要的麻烦。\n
+        你可以稍后手动删除文件，建议以管理员权限运行 ContestKiller 来避免此类情况的发生。
+    </s:String>
+
+    <s:String x:Key="lang_ChooseExportFormat">
+        选择导出文件的格式
     </s:String>
 </ResourceDictionary>
