@@ -245,7 +245,7 @@ namespace Contest_Killer.ViewModel
             for (int i = 0; i < RootVM.ContestData.Problems.Count; i++)
             {
                 probMenuItem = new MenuItem() { Icon = new PackIcon() { Kind = PackIconKind.File } };
-                probMenuItem.SetBinding(MenuItem.HeaderProperty, new Binding($"ContestData.Problems[{i}].Title"));
+                probMenuItem.SetBinding(MenuItem.HeaderProperty, new Binding($"RootVM.ContestData.Problems[{i}].Title"));
                 probMenuItem.Items.Add(new MenuItem()
                 {
                     Header = Application.Current.Resources["lang_Ascending"] as string,
