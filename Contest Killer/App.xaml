@@ -98,20 +98,15 @@
                                CommandLine=""/>
 
             <vm:Settings x:Key="AppDefaultSettings"
-                         ImagePath="pack://application:,,,/Resources/default1.jpg"
                          TabWidth="72"
                          IsAutoTabWidthSelected="False"
                          TabWidthSliderEnabled="True"
-                         IsImageEnabled="True"
-                         IsUsingDefaultImage="True"
                          DefaultMemoLimit="128"
                          DefaultTimeLimit="1000"
                          DefaultPointScore="10"
                          IsDarkMode="False"
                          PrimaryColor="#673ab7"
                          PrimaryFontColor="#ffffff"
-                         DesiredContrastRatio="4.5"
-                         ContrastValue="Medium"
                          CurrentLanguage="en_US"
                          CompilerCpp="{StaticResource AppDefaultCompilerCPP}"
                          CompilerCSharp="{StaticResource AppDefaultCompilerCSharp}"
@@ -125,8 +120,10 @@
 						<RowDefinition Height="Auto"/>
 						<RowDefinition Height="Auto"/>
 					</Grid.RowDefinitions>
-					<md:PackIcon Grid.Row="0" HorizontalAlignment="Center" Kind="{Binding Icon}" Width="24px" Height="24px"/>
-					<TextBlock TextTrimming="CharacterEllipsis" Grid.Row="1" HorizontalAlignment="Center" Text="{Binding Title}"/>
+					<md:PackIcon Grid.Row="0" HorizontalAlignment="Center" Kind="{Binding Icon}" Width="24px" Height="24px"
+                                 Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+					<TextBlock TextTrimming="CharacterEllipsis" Grid.Row="1" HorizontalAlignment="Center" Text="{Binding Title}"
+                               Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
 				</Grid>
 			</DataTemplate>
 
@@ -140,13 +137,20 @@
 			<!--MainWindowViewModel-->
 			<vm:MainWindowViewModel x:Key="MainWindow_VM"/>
 
-			<TextBlock x:Key="HomePageHeader"
-					   Foreground="{DynamicResource MaterialDesignBody}"
-					   Margin="25,0,0,0"
-					   VerticalAlignment="Center"
-					   FontSize="20px" FontWeight="Bold"
-					   
-					   Text="Contest Killer"/>
+            <StackPanel Orientation="Horizontal" x:Key="HomePageHeader">
+                <Border CornerRadius="8" Margin="25,0,0,0"
+                        VerticalAlignment="Center"
+                        Width="32px" Height="32px">
+                    <Border.Background>
+                        <ImageBrush ImageSource="Resources/appIcon.ico"/>
+                    </Border.Background>
+                </Border>
+                <TextBlock Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
+						   Margin="10,0,0,0"
+						   VerticalAlignment="Center"
+						   FontSize="20px" FontWeight="Bold"
+						   Text="Contest Killer"/>
+            </StackPanel>
 
 			<!--Global-->
 			<!---Golbal - Fonts -->
@@ -352,39 +356,46 @@
             </Style>
 
             <DataTemplate x:Key="JudgeInfoTemplate">
-                <Grid Margin="10,10,10,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
-                    <md:Card Grid.Column="0" Margin="0,0,20,0"
-                             Background="{Binding BgColor, Converter={StaticResource HexStringColorCtr}}"
-                             Foreground="#ffffff"
-                             Width="165px" Height="auto">
-                        <TextBlock Text="{Binding State}" Margin="10,5,10,5"
-                                   FontWeight="Medium" FontSize="12px" HorizontalAlignment="Center"/>
-                    </md:Card>
-
-                    <TextBlock Grid.Column="1" VerticalAlignment="Center"
-							   FontWeight="Bold" FontSize="16px">
-						<Run Text="{Binding PlayerName}"/>
-						<Run Text=" - "/>
-						<Run Text="{Binding ProblemName}"/>
-                        <Run Text="{Binding PointID, StringFormat=#{0}}"/>
-
+                <StackPanel>
+                    <TextBlock Margin="10" FontSize="16px" FontWeight="Bold">
+                    <Run Text="{Binding PlayerName}"/>
+                    <Run Text=" - "/>
+                    <Run Text="{Binding ProblemName}"/>
                     </TextBlock>
-
-                    <TextBlock Grid.Column="2"
-							   Margin="20,0,0,0"
-                               FontSize="16px" FontWeight="Medium"
-							   VerticalAlignment="Center">
-						<Run Text="{Binding Time, StringFormat={}{0} ms, Mode=OneWay}"/>
-						<Run Text="/"/>
-						<Run Text="{Binding Memory, StringFormat={}{0:F2} MB, Mode=OneWay}"/>
-                    </TextBlock>
-                </Grid>
+                    <ItemsControl ItemsSource="{Binding Points}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="5" Width="150px" Height="90px" Margin="5"
+                                        Background="{Binding BgColor, Converter={StaticResource HexStringColorCtr}}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Foreground="#fffef9" Margin="15,10,0,0"
+                                                   FontSize="12px" Text="{Binding PointID, StringFormat={}#{0}}"/>
+                                        <TextBlock Grid.Row="1" Foreground="#fffef9" FontWeight="SemiBold"
+                                                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                   FontSize="18px" Text="{Binding State}" Margin="5,0,5,0"
+                                                   TextTrimming="CharacterEllipsis" ToolTip="{Binding State}"/>
+                                        <TextBlock Grid.Row="2" Foreground="#fffef9" Margin="0,0,0,10"
+                                                   HorizontalAlignment="Center" FontSize="12px">
+                                                <Run Text="{Binding Time, StringFormat={}{0}ms}"/>
+                                                <Run Text="/"/>
+                                                <Run Text="{Binding Memory, StringFormat={}{0:F2}MB}"/>
+                                        </TextBlock>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
             </DataTemplate>
 
             <ut:PointState2Brush x:Key="PointStateCtr"/>
